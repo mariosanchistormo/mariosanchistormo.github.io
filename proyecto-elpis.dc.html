@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>ElPis — Mario Sanchis Tormo</title>
+  <meta name="description" content="ElPis: mesa multifunción para pisos pequeños. Diseño de producto conceptual.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    #miniaturas::-webkit-scrollbar { height: 6px; }
+    #miniaturas::-webkit-scrollbar-thumb { background: #6e8898; }
+    #miniaturas [data-activo="1"] { box-shadow: inset 0 0 0 3px #00f0f0; }
+    #miniaturas button:focus-visible { outline: 2px solid #00f0f0; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="producto" hint-size="100%,52px"></dc-import>
+
+<main style="background:#fefbea; color:#1e1e1c; padding-top:52px;">
+
+  <header style="background:#1e1e1c; color:#fefbea; padding:64px clamp(16px,4vw,48px) 40px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase; margin-bottom:20px;"><a href="producto.dc.html" style="color:#6e8898; text-decoration:none;">Producto</a> / 03 — ElPis</div>
+    <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(44px,9vw,124px); line-height:0.9; margin:0;">ElPis</h1>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(18px,2.4vw,28px); line-height:1.35; color:#fefbea; margin:18px 0 32px; max-width:760px;">Mesa multifunción para pisos pequeños</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; border-top:1px solid rgba(110,136,152,0.35);">
+      <sc-for list="{{ etiquetas }}" as="e" hint-placeholder-count="4">
+        <div style="border-left:1px solid rgba(110,136,152,0.35); padding:20px 20px 4px; display:flex; flex-direction:column; gap:8px; min-width:0;">
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">{{ e.clave }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.6; color:#fefbea;">{{ e.valor }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </header>
+
+  <section ref="{{ visorRef }}" style="background:#1e1e1c; padding:48px clamp(16px,4vw,48px) 56px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; flex-wrap:wrap;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase;">Visor — {{ visorIndicador }}</span>
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">← → para navegar</span>
+    </div>
+    <div style="position:relative; border:1px solid #00f0f0; background:#1e1e1c; aspect-ratio:16/9; width:100%; overflow:hidden;">
+      <img src="{{ grande.src }}" alt="{{ grande.alt }}" style="width:100%; height:100%; object-fit:contain; display:block;">
+      <sc-if value="{{ grande.etiqueta }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; left:10px; bottom:10px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#fefbea; background:#1e1e1c; padding:4px 8px; pointer-events:none;">{{ grande.etiqueta }}</span></sc-if>
+    </div>
+    <div id="miniaturas" role="tablist" aria-label="Miniaturas del proyecto" style="display:flex; gap:10px; overflow-x:auto; padding:14px 2px 6px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+      <sc-for list="{{ miniaturas }}" as="m" hint-placeholder-count="10">
+        <button type="button" role="tab" aria-selected="{{ m.activoAria }}" data-activo="{{ m.activoAttr }}" aria-label="{{ m.aria }}" onClick="{{ m.onClick }}" onKeyDown="{{ m.onKeyDown }}" style="{{ m.style }}" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+          <img src="{{ m.src }}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">01 — El encargo</div>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Un proyecto de la carrera, individual, con un requisito: desarrollarlo apoyándome en herramientas de IA generativa. Elegí un problema concreto: las parejas jóvenes que viven en pisos pequeños y no tienen espacio para muebles que se usan poco. Es un diseño conceptual.</p>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:24px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">02 — Concepto</div>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(24px,3.4vw,40px); line-height:1.25; margin:0; max-width:900px; text-wrap:pretty;">La mesa del comedor ocupa media sala y apenas la usas unos minutos al día; a veces ni eso, porque comes en el sofá.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Estudié las tendencias del mercado y vi que el problema no era encontrar más muebles, sino que los muebles trabajaran más. ElPis es una mesa que cambia de función para que el piso no tenga que hacerlo.</p>
+    <div style="display:flex; flex-direction:column; max-width:900px; border-bottom:1px solid rgba(110,136,152,0.35);">
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ Para quién</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Parejas jóvenes, de 23 a 35 años, en pisos pequeños.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ Qué resuelve</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Un solo mueble para café, escritorio y cocina, en vez de tres.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ Cómo se envejece</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Diseño atemporal: no busca destacar por su forma, sino por su utilidad, para poder acompañar a su dueño según cambie su vida.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="margin-bottom:8px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">03 — Posiciones</div>
+    <div style="font-family:'Fira Code', monospace; font-size:11px; color:#6e8898; margin-bottom:8px;">Pulsa una imagen para verla en el visor.</div>
+    <div style="display:flex; flex-direction:column; border-bottom:1px solid rgba(110,136,152,0.3);">
+      <sc-for list="{{ posiciones }}" as="s" hint-placeholder-count="3">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px 32px; padding:28px 0; border-top:1px solid rgba(110,136,152,0.3); align-items:start;">
+          <div style="display:flex; flex-direction:column; gap:10px; min-width:0;">
+            <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898;">{{ s.numero }}</span>
+            <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(22px,2.6vw,30px); text-transform:uppercase; line-height:1;">{{ s.titulo }}</span>
+            <span style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.04em; color:#3e7cb1;">{{ s.medidas }}</span>
+            <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; text-wrap:pretty; max-width:560px;">{{ s.texto }}</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:14px; min-width:0;">
+            <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+              <div style="display:flex; gap:8px; overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; scrollbar-color:#6e8898 transparent; scroll-snap-type:x mandatory; padding-bottom:4px;">
+                <sc-for list="{{ s.revista }}" as="t" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ t.onClick }}" aria-label="{{ t.aria }}" title="Ver en el visor" style="{{ t.style }}" style-hover="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3);" style-focus="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3); outline:none;">
+                    <img src="{{ t.src }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+                  </button>
+                </sc-for>
+              </div>
+              <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">Render mejorado con Vizcom</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+              <div style="display:flex; gap:6px; overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; scrollbar-color:#6e8898 transparent; scroll-snap-type:x mandatory; padding-bottom:4px;">
+                <sc-for list="{{ s.contexto }}" as="t" hint-placeholder-count="2">
+                  <button type="button" onClick="{{ t.onClick }}" aria-label="{{ t.aria }}" title="Ver en el visor" style="{{ t.style }}" style-hover="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3);" style-focus="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3); outline:none;">
+                    <img src="{{ t.src }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+                  </button>
+                </sc-for>
+              </div>
+              <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">Imagen de contexto</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:24px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">04 — El sistema</div>
+    <div style="display:flex; flex-direction:column; gap:16px; max-width:720px;">
+      <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; text-wrap:pretty;">La mesa es abatible y extensible. Tiene tres alturas y dos extensiones, y dos superficies posibles, madera o piedra. Las patas se pueden combinar como quieras, así que las posiciones prefijadas son un punto de partida, no un límite.</p>
+      <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; text-wrap:pretty;">Puedes usar dos mesas a la vez: mientras una persona toma un café, la otra trabaja; mientras una corta, la otra estudia.</p>
+      <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; text-wrap:pretty;">Las superficies imitan la piedra, pero están pensadas en un material técnico que reproduce sus cualidades, resistencia al corte y al agua, con mucho menos peso.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; align-items:start;">
+      <sc-for list="{{ tecnicas }}" as="d" hint-placeholder-count="2">
+        <div style="display:flex; flex-direction:column; gap:8px; min-width:0;">
+          <button type="button" onClick="{{ d.onClick }}" aria-label="{{ d.aria }}" title="Ver en el visor" style="padding:0; border:1px solid rgba(110,136,152,0.35); background:#1e1e1c; cursor:zoom-in; display:block; width:100%;" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+            <img src="{{ d.src }}" alt="{{ d.alt }}" loading="lazy" style="width:100%; aspect-ratio:16/10; object-fit:cover; display:block;">
+          </button>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; color:#fefbea;">{{ d.pie }}</span>
+          
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.04em; color:#6e8898; margin:8px 0 0;">Diseño conceptual: no se ha fabricado un prototipo.</p>
+  </section>
+
+  <section style="padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:20px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">05 — El nombre</div>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(24px,3.4vw,40px); line-height:1.25; margin:0; max-width:900px;">ElPis tiene dos lecturas.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">La primera es un guiño: ElPis, para el pisito, el problema que la mesa viene a resolver. La segunda viene del mito de Pandora. Pandora, la primera mujer del mito griego, abrió la caja (en el original, una jarra) que los dioses le habían dado, y todos los males se esparcieron por el mundo. Cuando la cerró, dentro solo quedaba Elpis, la esperanza, que es lo último que se pierde.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Para una generación a la que le cuesta tanto independizarse, la mesa quiere ser un respiro: una manera de vivir con más comodidad en el espacio que sí se puede tener.</p>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">06 — Qué hice</div>
+    <ul style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; padding-left:20px; max-width:760px; display:flex; flex-direction:column; gap:12px;">
+      <li>Estudié el mercado y las tendencias de mobiliario para pisos pequeños.</li>
+      <li>Definí el concepto y la narrativa del producto, incluido el nombre.</li>
+      <li>Diseñé la mesa y su sistema: tres alturas, dos extensiones y dos superficies.</li>
+      <li>Definí las dimensiones generales.</li>
+      <li>Modelé en SolidWorks y desarrollé las imágenes con Vizcom.</li>
+    </ul>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="margin-bottom:24px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">07 — Créditos</div>
+    <div style="border-left:1px solid rgba(110,136,152,0.35); padding:0 20px;">
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:20px; text-transform:uppercase;">Proyecto individual</span>
+    </div>
+  </section>
+
+  <nav style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <a href="proyecto-sw-vision-m.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">◀ Anterior</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">SW Vision M</span>
+    </a>
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); background:rgba(62,124,177,0.08); align-items:center; justify-content:center;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Volver a</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase; color:#3e7cb1;">Todos los proyectos</span>
+    </a>
+    <a href="proyecto-talpa.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); text-align:right; align-items:flex-end;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Siguiente ▶</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">Talpa Tunneling UPV</span>
+    </a>
+  </nav>
+
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  R = 'Render mejorado con Vizcom';
+  C = 'Imagen de contexto';
+  fotos = [
+    ['cafe-01', 'cafe', 'r', 'mesa de café, detalle con luz de ventana'],
+    ['cafe-02', 'cafe', 'r', 'mesa de café en el salón'],
+    ['cafe-03', 'cafe', 'r', 'mesa de café, persona cogiendo una taza'],
+    ['escritorio-01', 'escritorio', 'r', 'escritorio con objetos'],
+    ['escritorio-02', 'escritorio', 'r', 'escritorio, detalle'],
+    ['escritorio-03', 'escritorio', 'r', 'escritorio con lámpara y silla'],
+    ['cocina-01', 'cocina', 'r', 'auxiliar de cocina con taburetes'],
+    ['tecnica-01', 'tecnica', 't', 'explosionado'],
+    ['tecnica-02', 'tecnica', 't', 'transparencia'],
+    ['contexto-01', 'cafe', 'c', 'mesa de café en un salón'],
+    ['contexto-02', 'escritorio', 'c', 'escritorio en uso'],
+    ['contexto-03', 'escritorio', 'c', 'escritorio en uso'],
+    ['contexto-04', 'escritorio', 'c', 'dos escritorios enfrentados'],
+    ['contexto-05', 'escritorio', 'c', 'mesa inclinada como mesa de dibujo'],
+    ['contexto-06', 'cocina', 'c', 'persona cortando'],
+    ['contexto-07', 'cocina', 'c', 'cocina y escritorio a la vez']
+  ].map(([n, pos, tipo, desc]) => ({
+    src: 'media/elpis-' + n + '.jpg', pos, tipo, alt: 'ElPis — ' + desc,
+    etiqueta: tipo === 'r' ? this.R : tipo === 'c' ? this.C : ''
+  }));
+  state = { orden: this.fotos.map((_, i) => i) };
+  visorRef = React.createRef();
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (e.key === 'ArrowRight') this.rotar(1);
+      else if (e.key === 'ArrowLeft') this.rotar(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); }
+
+  intercambiar(pos) {
+    this.setState((s) => {
+      const orden = s.orden.slice();
+      [orden[0], orden[pos]] = [orden[pos], orden[0]];
+      return { orden };
+    });
+  }
+  rotar(dir) {
+    const n = this.state.orden.length;
+    if (n < 2) return;
+    this.intercambiar(dir > 0 ? 1 : n - 1);
+  }
+  mostrar(fi) {
+    const pos = this.state.orden.indexOf(fi);
+    if (pos > 0) this.intercambiar(pos);
+    const el = this.visorRef.current;
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const fotos = this.fotos;
+    const orden = this.state.orden;
+    const actual = orden[0];
+    const miniaturas = orden.map((fi, pos) => {
+      const activo = pos === 0;
+      return {
+        src: fotos[fi].src,
+        activoAttr: activo ? '1' : '0',
+        activoAria: activo ? 'true' : 'false',
+        aria: (activo ? 'En el visor: ' : 'Mostrar en el visor: ') + fotos[fi].alt,
+        onClick: () => { if (!activo) this.intercambiar(pos); },
+        onKeyDown: (e) => { if ((e.key === 'Enter' || e.key === ' ') && !activo) { e.preventDefault(); this.intercambiar(pos); } },
+        style: { flex: '0 0 auto', width: 'clamp(112px,16vw,168px)', aspectRatio: '16 / 10', padding: 0, border: '1px solid rgba(110,136,152,0.5)', background: '#1e1e1c', cursor: activo ? 'default' : 'pointer', scrollSnapAlign: 'start', transition: 'box-shadow 0.12s linear', display: 'block', overflow: 'hidden' }
+      };
+    });
+    const item = (fi, w, h) => ({
+      src: fotos[fi].src, alt: fotos[fi].alt, etiqueta: fotos[fi].etiqueta,
+      aria: 'Ver en el visor: ' + fotos[fi].alt,
+      onClick: () => this.mostrar(fi),
+      style: { flex: '0 0 auto', width: w, height: h, padding: 0, display: 'block', overflow: 'hidden', cursor: 'zoom-in', scrollSnapAlign: 'start', background: '#1e1e1c', border: fi === actual ? '2px solid #3e7cb1' : '1px solid rgba(110,136,152,0.4)', boxSizing: 'border-box', transition: 'border-color 0.12s linear' }
+    });
+    const idx = (pos, tipo) => fotos.map((f, i) => (f.pos === pos && f.tipo === tipo) ? i : -1).filter((i) => i >= 0);
+    const posiciones = [
+      ['cafe', 'Mesa de café', 'La posición de reposo, la que menos molesta en un salón pequeño.', 'Altura 40 cm · tablero 70 × 100 cm'],
+      ['escritorio', 'Escritorio / mesa de comedor', 'Más altura y más superficie. Extendida, sirve también como mesa de comedor.', 'Altura 70 cm · tablero 70 × 100 cm, extendido 70 × 150 cm'],
+      ['cocina', 'Auxiliar de cocina', 'Para cortar y cocinar.', 'Altura 95 cm · tablero 70 × 100 cm']
+    ].map(([pos, titulo, texto, medidas], i) => ({
+      numero: '03.' + (i + 1), titulo, texto, medidas,
+      revista: idx(pos, 'r').map((fi) => item(fi, '180px', '135px')),
+      contexto: idx(pos, 'c').map((fi) => item(fi, '96px', '72px'))
+    }));
+    const pies = ['Explosionado', 'Transparencia'];
+    const tecnicas = idx('tecnica', 't').map((fi, k) => ({ ...item(fi, '100%', 'auto'), pie: pies[k] }));
+    return {
+      etiquetas: [
+        { clave: 'Año', valor: '2025' },
+        { clave: 'Tipo', valor: 'Diseño de producto conceptual' },
+        { clave: 'Mi rol', valor: 'Desarrollo completo del diseño conceptual' },
+        { clave: 'Herramientas', valor: 'SolidWorks · Vizcom' }
+      ],
+      grande: fotos[actual],
+      miniaturas,
+      visorIndicador: String(actual + 1).padStart(2, '0') + ' / ' + String(fotos.length).padStart(2, '0'),
+      visorRef: this.visorRef,
+      posiciones,
+      tecnicas
+    };
+  }
+}
+</script>
+</body>
+</html>

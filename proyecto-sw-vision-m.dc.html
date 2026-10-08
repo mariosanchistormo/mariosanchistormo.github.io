@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>SW Vision M — Mario Sanchis Tormo</title>
+  <meta name="description" content="SW Vision M: smartwatch conceptual inspirado en el lenguaje formal del BMW Vision M Next.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    #miniaturas::-webkit-scrollbar { height: 6px; }
+    #miniaturas::-webkit-scrollbar-thumb { background: #6e8898; }
+    #miniaturas [data-activo="1"] { box-shadow: inset 0 0 0 3px #00f0f0; }
+    #miniaturas button:focus-visible { outline: 2px solid #00f0f0; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="producto" hint-size="100%,52px"></dc-import>
+
+<main style="background:#fefbea; color:#1e1e1c; padding-top:52px;">
+
+  <header style="background:#1e1e1c; color:#fefbea; padding:64px clamp(16px,4vw,48px) 40px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase; margin-bottom:20px;"><a href="producto.dc.html" style="color:#6e8898; text-decoration:none;">Producto</a> / 02 — SW Vision M</div>
+    <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(44px,9vw,124px); line-height:0.9; margin:0;">SW Vision M</h1>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(18px,2.4vw,28px); line-height:1.35; color:#fefbea; margin:18px 0 32px; max-width:760px;">Smartwatch inspirado en el lenguaje formal del BMW Vision M Next</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; border-top:1px solid rgba(110,136,152,0.35);">
+      <sc-for list="{{ etiquetas }}" as="e" hint-placeholder-count="4">
+        <div style="border-left:1px solid rgba(110,136,152,0.35); padding:20px 20px 4px; display:flex; flex-direction:column; gap:8px; min-width:0;">
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">{{ e.clave }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.6; color:#fefbea;">{{ e.valor }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </header>
+
+  <section ref="{{ visorRef }}" style="background:#1e1e1c; padding:48px clamp(16px,4vw,48px) 56px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; flex-wrap:wrap;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase;">Visor — {{ visorIndicador }}</span>
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">← → para navegar</span>
+    </div>
+    <div style="position:relative; border:1px solid #00f0f0; background:#1e1e1c; aspect-ratio:16/9; width:100%; overflow:hidden;">
+      <img src="{{ grande.src }}" alt="{{ grande.alt }}" style="width:100%; height:100%; object-fit:contain; display:block;">
+      <sc-if value="{{ grande.etiqueta }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; left:10px; bottom:10px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#fefbea; background:#1e1e1c; padding:4px 8px; pointer-events:none;">{{ grande.etiqueta }}</span></sc-if>
+    </div>
+    <div id="miniaturas" role="tablist" aria-label="Miniaturas del proyecto" style="display:flex; gap:10px; overflow-x:auto; padding:14px 2px 6px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+      <sc-for list="{{ miniaturas }}" as="m" hint-placeholder-count="9">
+        <button type="button" role="tab" aria-selected="{{ m.activoAria }}" data-activo="{{ m.activoAttr }}" aria-label="{{ m.aria }}" onClick="{{ m.onClick }}" onKeyDown="{{ m.onKeyDown }}" style="{{ m.style }}" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+          <img src="{{ m.src }}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">01 — El encargo</div>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Diseñar un smartwatch conceptual que trasladara a un objeto personal la visión de la división M de BMW: una experiencia de usuario sin concesiones. Desarrollé el producto completo en SolidWorks, lo rendericé en KeyShot y lo presenté en tres paneles.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.7; margin:0; color:#6e8898;">El coche que inspira el diseño: <a href="https://www.bmw.co.cr/bmw-vision-m-next/" target="_blank" rel="noopener">Ver el BMW Vision M Next ↗</a></p>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:24px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">02 — Concepto</div>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(24px,3.4vw,40px); line-height:1.25; margin:0; max-width:900px; text-wrap:pretty;">Igual que el BMW Vision M Next redefine la conducción, SW Vision M redefine el control, la emoción y la conciencia del propio cuerpo.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">No pretende sustituir la percepción humana: la amplifica. De ahí el lema, "Tech gives, not takes".</p>
+    <div style="display:flex; flex-direction:column; max-width:900px; border-bottom:1px solid rgba(110,136,152,0.35);">
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ El control</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Geometría de marca en la esfera y en la caja.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ La emoción</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Tres colores, tres caracteres, una sola familia.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ La conciencia del cuerpo</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Sensores y luces integrados, visibles cuando hace falta.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; color:#6e8898; margin-bottom:8px;">Pulsa una imagen para verla en el visor.</div>
+    <div style="display:flex; flex-direction:column; border-bottom:1px solid rgba(110,136,152,0.3);">
+      <sc-for list="{{ secciones }}" as="s" hint-placeholder-count="3">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px 32px; padding:28px 0; border-top:1px solid rgba(110,136,152,0.3); align-items:start;">
+          <div style="display:flex; flex-direction:column; gap:10px; min-width:0;">
+            <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">{{ s.numero }}</span>
+            <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(22px,2.6vw,30px); text-transform:uppercase; line-height:1;">{{ s.titulo }}</span>
+            <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#1e1e1c; text-wrap:pretty; max-width:560px;">{{ s.texto }}</span>
+            <sc-if value="{{ s.medidas }}" hint-placeholder-val="{{ false }}">
+              <span style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.06em; color:#6e8898;">Medidas: {{ s.medidas }}</span>
+            </sc-if>
+          </div>
+          <div style="display:flex; gap:8px; overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; scrollbar-color:#6e8898 transparent; scroll-snap-type:x mandatory; padding-bottom:4px; min-width:0;">
+            <sc-for list="{{ s.tira }}" as="t" hint-placeholder-count="2">
+              <div style="flex:0 0 auto; display:flex; flex-direction:column; gap:6px; scroll-snap-align:start;">
+                <button type="button" onClick="{{ t.onClick }}" aria-label="{{ t.aria }}" title="Ver en el visor" style="{{ t.style }}" style-hover="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3);" style-focus="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3); outline:none;">
+                  <img src="{{ t.src }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </button>
+                <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">{{ t.etiqueta }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:28px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">06</div>
+      <h2 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(36px,6vw,72px); line-height:0.9; margin:0;">En escena</h2>
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(18px,2.4vw,26px); line-height:1.35; margin:0;">El reloj fuera del estudio</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; align-items:start;">
+      <sc-for list="{{ escena }}" as="d" hint-placeholder-count="3">
+        <div style="display:flex; flex-direction:column; gap:10px; min-width:0;">
+          <button type="button" onClick="{{ d.onClick }}" aria-label="{{ d.aria }}" title="Ver en el visor" style="padding:0; border:1px solid rgba(110,136,152,0.35); background:#1e1e1c; cursor:zoom-in; display:block; width:100%;" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+            <img src="{{ d.src }}" alt="{{ d.alt }}" loading="lazy" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
+          </button>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.6; color:#fefbea;">{{ d.linea }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">{{ d.etiqueta }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:28px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">07 — La colección</div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <button type="button" onClick="{{ coleccion.onClick }}" aria-label="{{ coleccion.aria }}" title="Ver en el visor" style="padding:0; border:1px solid rgba(110,136,152,0.35); background:#1e1e1c; cursor:zoom-in; display:block; width:100%;" style-hover="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3);" style-focus="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3); outline:none;">
+        <img src="{{ coleccion.src }}" alt="{{ coleccion.alt }}" loading="lazy" style="width:100%; height:auto; display:block;">
+      </button>
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">{{ coleccion.etiqueta }}</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:32px;">
+      <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+        <span style="display:block; height:2px; width:100%; background:#d42a2a;"></span>
+        <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.8vw,32px); text-transform:uppercase; line-height:1;">The Force</span>
+        <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#6e8898;">Rojo</span>
+        <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; text-wrap:pretty;">La fuerza. El rojo es potencia, control y el futuro que elegimos. Es el carácter más deportivo de la colección y el que mejor encarna el espíritu de la división M.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+        <span style="display:block; height:2px; width:100%; background:#2f6fd6;"></span>
+        <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.8vw,32px); text-transform:uppercase; line-height:1;">The Legacy</span>
+        <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#6e8898;">Azul</span>
+        <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; text-wrap:pretty;">El origen. Es el azul de la precisión que no caduca, el que ancla el reloj a la historia de la marca. Cada línea de la esfera y de la caja recuerda de dónde viene todo lo demás.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+        <span style="display:block; height:2px; width:100%; background:#e0b000;"></span>
+        <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.8vw,32px); text-transform:uppercase; line-height:1;">The Spark</span>
+        <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#6e8898;">Amarillo</span>
+        <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; text-wrap:pretty;">La chispa. El amarillo es el momento en que una idea se enciende: innovación, concepto y energía creativa. Es la versión que mira hacia lo que todavía no existe.</p>
+      </div>
+    </div>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(22px,3vw,34px); line-height:1.3; margin:8px 0 0;">Tres colores. Una sola visión. Boldly driven.</p>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">08 — Qué hice</div>
+    <ul style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; padding-left:20px; max-width:760px; display:flex; flex-direction:column; gap:12px;">
+      <li>Modelé el reloj completo en SolidWorks: caja, correa articulada, hebilla y disposición de sensores.</li>
+      <li>Definí la colección de tres colores y diseñé las pantallas del reloj.</li>
+      <li>Rendericé el producto en KeyShot.</li>
+      <li>Compuse tres paneles de presentación que cuentan el producto y las razones de cada decisión.</li>
+    </ul>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="margin-bottom:24px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">09 — Créditos</div>
+    <div style="border-left:1px solid rgba(110,136,152,0.35); padding:0 20px;">
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:20px; text-transform:uppercase;">Proyecto individual</span>
+    </div>
+  </section>
+
+  <section style="padding:48px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:20px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase;">Anexo — Paneles de presentación originales</div>
+      <div style="font-family:'Fira Code', monospace; font-size:11px; color:#6e8898;">Pulsa un panel para ampliarlo.</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <sc-for list="{{ paneles }}" as="p" hint-placeholder-count="3">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button type="button" onClick="{{ p.onClick }}" aria-label="{{ p.aria }}" style="padding:0; border:1px solid rgba(110,136,152,0.35); background:#fefbea; cursor:zoom-in; display:block; width:100%;" style-hover="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3);" style-focus="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3); outline:none;">
+            <img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" style="width:100%; height:auto; display:block;">
+          </button>
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">{{ p.numero }} · Paneles originales (en inglés)</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <nav style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <a href="proyecto-tozzo.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">◀ Anterior</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">Tozzo</span>
+    </a>
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); background:rgba(62,124,177,0.08); align-items:center; justify-content:center;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Volver a</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase; color:#3e7cb1;">Todos los proyectos</span>
+    </a>
+    <a href="proyecto-elpis.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); text-align:right; align-items:flex-end;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Siguiente ▶</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">ElPis</span>
+    </a>
+  </nav>
+
+</main>
+
+<sc-if value="{{ ampliado }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="Panel ampliado" onClick="{{ cerrar }}" style="position:fixed; inset:0; z-index:100; background:rgba(30,30,28,0.96); display:flex; align-items:center; justify-content:center; padding:clamp(12px,3vw,40px); cursor:zoom-out;">
+    <img src="{{ ampliado }}" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block; border:1px solid rgba(110,136,152,0.35);">
+    <span style="position:absolute; top:16px; right:20px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#fefbea; text-transform:uppercase;">Cerrar ◆ Esc</span>
+  </div>
+</sc-if>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  grupos = [
+    ['El reloj', ['reloj-01', 'reloj-02']],
+    ['La correa', ['correa-01']],
+    ['La tecnología a la vista', ['tecnologia-01', 'tecnologia-02']],
+    ['En escena', ['escena-01', 'escena-02', 'escena-03']],
+    ['La colección', ['coleccion-01']]
+  ];
+  fotos = this.grupos.flatMap(([seccion, ns]) => ns.map((n) => ({
+    src: 'media/sw-' + n + '.jpg', seccion, alt: 'SW Vision M — ' + seccion.toLowerCase(), etiqueta: ''
+  })));
+  state = { orden: this.fotos.map((_, i) => i), ampliado: '' };
+  visorRef = React.createRef();
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (this.state.ampliado) { if (e.key === 'Escape') this.setState({ ampliado: '' }); return; }
+      if (e.key === 'ArrowRight') this.rotar(1);
+      else if (e.key === 'ArrowLeft') this.rotar(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); }
+
+  intercambiar(pos) {
+    this.setState((s) => {
+      const orden = s.orden.slice();
+      [orden[0], orden[pos]] = [orden[pos], orden[0]];
+      return { orden };
+    });
+  }
+  rotar(dir) {
+    const n = this.state.orden.length;
+    if (n < 2) return;
+    this.intercambiar(dir > 0 ? 1 : n - 1);
+  }
+  mostrar(fi) {
+    const pos = this.state.orden.indexOf(fi);
+    if (pos > 0) this.intercambiar(pos);
+    const el = this.visorRef.current;
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const fotos = this.fotos;
+    const orden = this.state.orden;
+    const actual = orden[0];
+    const miniaturas = orden.map((fi, pos) => {
+      const activo = pos === 0;
+      return {
+        src: fotos[fi].src,
+        activoAttr: activo ? '1' : '0',
+        activoAria: activo ? 'true' : 'false',
+        aria: (activo ? 'En el visor: ' : 'Mostrar en el visor: ') + fotos[fi].alt,
+        onClick: () => { if (!activo) this.intercambiar(pos); },
+        onKeyDown: (e) => { if ((e.key === 'Enter' || e.key === ' ') && !activo) { e.preventDefault(); this.intercambiar(pos); } },
+        style: { flex: '0 0 auto', width: 'clamp(112px,16vw,168px)', aspectRatio: '16 / 10', padding: 0, border: '1px solid rgba(110,136,152,0.5)', background: '#1e1e1c', cursor: activo ? 'default' : 'pointer', scrollSnapAlign: 'start', transition: 'box-shadow 0.12s linear', display: 'block', overflow: 'hidden' }
+      };
+    });
+    const idxDe = (s) => fotos.map((f, i) => f.seccion === s ? i : -1).filter((i) => i >= 0);
+    const item = (fi) => ({
+      src: fotos[fi].src, alt: fotos[fi].alt, etiqueta: fotos[fi].etiqueta,
+      aria: 'Ver en el visor: ' + fotos[fi].alt,
+      onClick: () => this.mostrar(fi),
+      style: { width: '160px', height: '120px', padding: 0, display: 'block', overflow: 'hidden', cursor: 'zoom-in', background: '#1e1e1c', border: fi === actual ? '2px solid #3e7cb1' : '1px solid rgba(110,136,152,0.4)', boxSizing: 'border-box', transition: 'border-color 0.12s linear' }
+    });
+    const secciones = [
+      { titulo: 'El reloj', texto: 'Caja de fibra de carbono, pensada para dar rigidez sin peso. Biseles mecanizados que mejoran el agarre, atrapan la luz y dan profundidad.', medidas: '62,5 × 54,5 × 75,5 mm' },
+      { titulo: 'La correa', texto: 'Aluminio cepillado y galvanizado, con eslabones modelados uno a uno para equilibrar flexibilidad, durabilidad y estructura. La hebilla lleva grabada la insignia del BMW Vision M Next.', medidas: '' },
+      { titulo: 'La tecnología a la vista', texto: 'Botones, sensores, indicadores LED y puerto de carga integrados en una sola composición.', medidas: '' }
+    ].map((s, i) => ({ ...s, numero: String(i + 3).padStart(2, '0'), tira: idxDe(s.titulo).map(item) }));
+    const lineas = ['Entre roca oscura, con luz cálida rasante.', 'Entre roca oscura, con luz cálida rasante.', 'En vitrina, sobre un bloque de piedra, como pieza de museo.'];
+    const escena = idxDe('En escena').map((fi, k) => ({ ...item(fi), linea: lineas[k] || '' }));
+    const coleccion = item(idxDe('La colección')[0]);
+    const paneles = [1, 2, 3].map((k) => {
+      const src = 'media/sw-vision-m-panel-0' + k + '.jpg';
+      return { src, numero: 'Panel 0' + k, alt: 'SW Vision M — panel de presentación original ' + k, aria: 'Ampliar panel ' + k, onClick: () => this.setState({ ampliado: src }) };
+    });
+    return {
+      etiquetas: [
+        { clave: 'Año', valor: '2025' },
+        { clave: 'Tipo', valor: 'Diseño de producto conceptual' },
+        { clave: 'Herramientas', valor: 'SolidWorks · KeyShot · Vizcom' }
+      ],
+      grande: fotos[actual],
+      miniaturas,
+      visorIndicador: String(actual + 1).padStart(2, '0') + ' / ' + String(fotos.length).padStart(2, '0') + ' · ' + fotos[actual].seccion,
+      visorRef: this.visorRef,
+      secciones,
+      escena,
+      coleccion,
+      paneles,
+      ampliado: this.state.ampliado,
+      cerrar: () => this.setState({ ampliado: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

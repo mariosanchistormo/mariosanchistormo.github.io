@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Mario Sanchis Tormo — Operaciones y producto</title>
+  <meta name="description" content="Portfolio de Mario Sanchis Tormo, ingeniero en Diseño Industrial y Desarrollo de Productos (UPV). Operaciones, dirección de proyectos y diseño de producto.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    @keyframes heroReveal { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    #eje-edades button:focus-visible { outline: 1px solid #00f0f0; outline-offset: -2px; }
+    @media (max-width: 760px) {
+      #hero { grid-template-columns: minmax(0,1fr) !important; }
+      #hero-aside { border-left: none !important; border-top: 1px solid rgba(110,136,152,0.35) !important; padding-left: 0 !important; padding-top: 24px !important; }
+    }
+    @media (max-width: 1000px) {
+      #coche-fig, #aside-quien, #aside-tray { position: static !important; flex-basis: 100% !important; }
+      #coche-img { height: 60vh !important; max-height: 520px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="inicio" hint-size="100%,52px"></dc-import>
+
+<main style="background:#1e1e1c;">
+
+  <header id="hero" style="background:#1e1e1c; color:#fefbea; padding:calc(52px + 56px) clamp(16px,4vw,48px) 56px; min-height:82vh; display:grid; grid-template-columns:minmax(0,60fr) minmax(0,40fr); gap:clamp(24px,4vw,56px); align-items:center; animation: heroReveal 0.9s cubic-bezier(.2,.8,.2,1) both;">
+    <div style="display:flex; flex-direction:column; gap:26px; min-width:0;">
+      <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Index / 00 — Inicio</div>
+      <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(52px,11vw,168px); line-height:0.88; margin:0; letter-spacing:0.005em;">Mario<br>Sanchis<br>Tormo</h1>
+      <div style="font-family:'Fira Code', monospace; font-size:clamp(12px,1.6vw,15px); letter-spacing:0.05em; color:#6e8898; text-transform:uppercase; max-width:640px;">Operaciones y producto · Ingeniero en Diseño Industrial y Desarrollo de Productos (UPV)</div>
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(19px,2.6vw,32px); line-height:1.35; max-width:780px; color:#fefbea; margin:4px 0 0;">Cojo proyectos técnicos con muchas piezas y muchas personas, y hago que lleguen a algún sitio.</p>
+      <div style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase; margin-top:4px;">Valencia · incorporación inmediata</div>
+    </div>
+
+    <aside id="hero-aside" aria-label="Eje de trayectoria por edad" style="align-self:stretch; display:grid; grid-template-rows:auto 1fr auto; gap:16px; border-left:1px solid rgba(110,136,152,0.35); padding-left:clamp(16px,2.5vw,32px); font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase; min-width:0;">
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <div style="display:flex; justify-content:space-between; gap:20px;"><span>Ref.</span><span style="color:#00f0f0;">MST—2026</span></div>
+        <div style="display:flex; justify-content:space-between; gap:20px;"><span>Rev.</span><span>01</span></div>
+        <div style="display:flex; justify-content:space-between; gap:20px;"><span>Escala</span><span>1:1</span></div>
+      </div>
+
+      <div id="eje-edades" style="position:relative; min-height:250px; border:1px solid rgba(110,136,152,0.35); background-image:linear-gradient(rgba(110,136,152,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(110,136,152,0.16) 1px, transparent 1px); background-size:26px 26px; display:flex; flex-direction:column;">
+        <span style="position:absolute; top:-1px; left:-1px; width:12px; height:12px; border-top:1px solid #00f0f0; border-left:1px solid #00f0f0;"></span>
+        <span style="position:absolute; top:-1px; right:-1px; width:12px; height:12px; border-top:1px solid #00f0f0; border-right:1px solid #00f0f0;"></span>
+        <span style="position:absolute; bottom:-1px; left:-1px; width:12px; height:12px; border-bottom:1px solid #00f0f0; border-left:1px solid #00f0f0;"></span>
+        <span style="position:absolute; bottom:-1px; right:-1px; width:12px; height:12px; border-bottom:1px solid #00f0f0; border-right:1px solid #00f0f0;"></span>
+        <span style="position:absolute; left:34px; top:12px; bottom:12px; width:1px; background:rgba(0,240,240,0.35);"></span>
+
+        <sc-for list="{{ ejeEdades }}" as="e" hint-placeholder-count="5">
+          <div style="{{ e.wrapStyle }}">
+            <button type="button" data-activo="{{ e.activoAttr }}" aria-expanded="{{ e.expandedAria }}" aria-label="{{ e.aria }}" onClick="{{ e.onClick }}" onMouseEnter="{{ e.onEnter }}" style="{{ e.rowStyle }}">
+              <span style="{{ e.edadStyle }}">{{ e.edad }}</span>
+              <span style="{{ e.dotStyle }}"></span>
+              <span style="{{ e.tickStyle }}"></span>
+            </button>
+            <div style="{{ e.panelStyle }}">
+              <div style="font-family:'Fira Code', monospace; font-size:11px; line-height:1.6; color:#fefbea; letter-spacing:0.02em; text-transform:none;">{{ e.hito }}</div>
+              <a href="{{ e.ancla }}" onClick="{{ e.onVerMas }}" style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#00f0f0; text-transform:uppercase; text-decoration:none; align-self:flex-start;">Ver más ↓</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div id="indice-secciones" style="display:flex; flex-direction:column; gap:2px;">
+        <sc-for list="{{ secciones }}" as="s" hint-placeholder-count="4">
+          <a href="{{ s.ancla }}" onClick="{{ s.onClick }}" style="display:flex; justify-content:space-between; gap:20px; padding:4px 0; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#6e8898; text-decoration:none; border-bottom:1px solid transparent;" style-hover="color:#00f0f0; border-bottom-color:rgba(0,240,240,0.5);"><span>{{ s.num }}</span><span>{{ s.nombre }}</span></a>
+        </sc-for>
+      </div>
+    </aside>
+  </header>
+
+  <section style="background:#1e1e1c; color:#fefbea; border-top:1px solid rgba(110,136,152,0.35); padding:40px clamp(16px,4vw,48px) 56px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0;">
+    <sc-for list="{{ cifras }}" as="c" hint-placeholder-count="4">
+      <div style="border-left:1px solid rgba(110,136,152,0.35); padding:0 24px 0 24px; display:flex; flex-direction:column; gap:10px; min-width:0;">
+        <div style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(30px,4vw,52px); line-height:1; color:#fefbea; text-transform:uppercase;">{{ c.numero }}</div>
+        <div style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.04em; color:#6e8898; line-height:1.4;">{{ c.etiqueta }}</div>
+        <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#3e7cb1; text-transform:uppercase;">— {{ c.origen }}</div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section id="sec-quien-soy" data-reveal-id="quienSoy" ref="{{ quienSoyRef }}" style="scroll-margin-top:60px; background:#fefbea; color:#1e1e1c; padding:88px clamp(16px,4vw,48px); border-top:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; flex-wrap:wrap; gap:clamp(32px,5vw,80px); align-items:flex-start;">
+    <div id="aside-quien" style="flex:5 1 320px; min-width:0; position:sticky; top:84px; display:flex; flex-direction:column; gap:40px;">
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">01 · Quién soy</div>
+      <h2 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(36px,6vw,76px); line-height:0.92; margin:0;">Lo que hice con cada año</h2>
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,2.2vw,24px); line-height:1.45; margin:0; max-width:760px; text-wrap:pretty;">Acabo de salir de la carrera, así que no puedo contar años de experiencia. Puedo contar qué hice con cada uno. Desde el primer día quise aprovechar la universidad al máximo, y esto es lo que salió.</p>
+    </div>
+    <nav aria-label="Índice por edades" style="display:flex; flex-direction:column; border-bottom:1px solid rgba(110,136,152,0.35);">
+      <sc-for list="{{ hitos }}" as="h" hint-placeholder-count="5">
+        <a href="#{{ h.id }}" style="display:grid; grid-template-columns:48px 1fr auto; gap:16px; align-items:baseline; padding:12px 0; border-top:1px solid rgba(110,136,152,0.35); text-decoration:none; color:#1e1e1c;" style-hover="color:#3e7cb1;">
+          <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:24px; line-height:1;">{{ h.edad }}</span>
+          <span style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:17px; line-height:1.3;">{{ h.titulo }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">{{ h.curso }}</span>
+        </a>
+      </sc-for>
+    </nav>
+    </div>
+    <div style="flex:7 1 460px; min-width:0;">
+    <div style="{{ quienSoyRevealStyle }}">
+    <div style="display:flex; flex-direction:column;">
+
+      <sc-for list="{{ hitos }}" as="h" hint-placeholder-count="5">
+        <div id="{{ h.id }}" style="display:grid; grid-template-columns:minmax(96px,140px) 1fr; gap:clamp(16px,3vw,36px); align-items:baseline; padding:22px 0; border-top:1px solid rgba(110,136,152,0.35); scroll-margin-top:70px;">
+          <div style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:clamp(44px,7vw,84px); line-height:0.85; color:#1e1e1c; letter-spacing:0.01em;">{{ h.edad }}</div>
+          <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+            <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">{{ h.etiqueta }}</div>
+            <div style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(19px,2.4vw,27px); line-height:1.25; color:#1e1e1c; margin:2px 0 4px;">{{ h.titulo }}</div>
+            <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.75; margin:0; color:#1e1e1c;">{{ h.hecho }}</p>
+          </div>
+        </div>
+      </sc-for>
+
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,2.2vw,24px); line-height:1.5; margin:36px 0 0; color:#1e1e1c; border-top:1px solid rgba(110,136,152,0.35); padding-top:28px;">Ahí entendí dónde está mi sitio: no en ser el mejor técnico de la sala, sino en decidir entre disciplinas y traducir de una a otra.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <section id="sec-trayectoria" data-reveal-id="trayectoria" ref="{{ trayectoriaRef }}" style="scroll-margin-top:60px; background:#fefbea; color:#1e1e1c; padding:0 clamp(16px,4vw,48px) 88px;">
+    <div aria-hidden="true" style="display:flex; align-items:center; gap:14px; padding:0 0 88px; color:#1e1e1c;"><span style="flex:1 1 auto; height:0; border-top:1px solid #1e1e1c;"></span><span style="font-family:'Fira Code', monospace; font-size:12px; line-height:1;">◆</span><span style="flex:1 1 auto; height:0; border-top:1px solid #1e1e1c;"></span></div>
+    <div style="display:flex; flex-wrap:wrap; gap:clamp(32px,5vw,80px); align-items:flex-start;">
+    <div id="aside-tray" style="flex:5 1 320px; min-width:0; position:sticky; top:84px; display:flex; flex-direction:column; gap:14px;">
+      <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">02 · Trayectoria</div>
+      <h2 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(36px,6vw,76px); line-height:0.92; margin:0;">El currículum, en corto</h2>
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,2.2vw,24px); line-height:1.45; margin:0; max-width:760px; text-wrap:pretty;">La misma historia, contada como experiencia profesional.</p>
+    </div>
+    <div style="flex:7 1 460px; min-width:0;">
+    <div style="{{ trayectoriaRevealStyle }}">
+    <div style="display:flex; flex-direction:column;">
+      <sc-for list="{{ trayectoria }}" as="t" hint-placeholder-count="4">
+        <div style="display:flex; flex-wrap:wrap; gap:8px 24px; padding:24px 0; border-top:1px solid rgba(110,136,152,0.3);">
+          <div style="flex:1 1 100%; font-family:'Fira Code', monospace; font-size:12px; color:#6e8898; line-height:1.6;">{{ t.fechas }}</div>
+          <div style="flex:1 1 100%; min-width:0; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(18px,2vw,24px); text-transform:uppercase; letter-spacing:0.01em;">{{ t.cargo }}</div>
+            <div style="font-family:'Fira Code', monospace; font-size:12px; color:#3e7cb1; text-transform:uppercase; letter-spacing:0.04em;">{{ t.organizacion }}</div>
+            <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:6px 0 0; max-width:820px; text-wrap:pretty;">{{ t.descripcion }}</p>
+          </div>
+        </div>
+      </sc-for>
+      <div style="display:flex; border-top:1px solid rgba(110,136,152,0.3); padding-top:32px;">
+        <a href="cv-mario-sanchis-tormo.pdf" download="CV_Mario_Sanchis_Tormo_ES.pdf" target="_blank" rel="noopener" style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; background:#1e1e1c; color:#fefbea; padding:14px 28px; font-weight:600;" style-hover="background:#3e7cb1; color:#fefbea;">Descargar CV en PDF</a>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <section id="sec-como-trabajo" data-reveal-id="comoTrabajo" ref="{{ comoTrabajoRef }}" style="scroll-margin-top:60px; background:#1e1e1c; color:#fefbea; padding:88px clamp(16px,4vw,48px); border-top:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:48px; max-width:900px;">
+      <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">03 · Cómo trabajo</div>
+      <h2 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(36px,6vw,76px); line-height:0.92; margin:0;">Entre el cliente y la ingeniería</h2>
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,2.2vw,24px); line-height:1.45; margin:0; max-width:760px; text-wrap:pretty;">Lo explico con un coche</p>
+    </div>
+    <div style="{{ comoTrabajoRevealStyle }}">
+    <div style="display:flex; flex-wrap:wrap; gap:clamp(32px,4vw,64px); align-items:flex-start;">
+      <figure id="coche-fig" style="flex:5 1 300px; min-width:0; margin:0; position:sticky; top:76px; display:flex; flex-direction:column; gap:12px;">
+        <img id="coche-img" src="media/coche-despiezado.jpg" alt="Coche transparente visto desde arriba: chasis, motor, baterías y cableado conectados por líneas a un núcleo luminoso en el centro" style="width:100%; height:min(calc(100vh - 150px), 920px); object-fit:cover; object-position:center 45%; display:block; border:1px solid rgba(110,136,152,0.35); background:#1c1d26;">
+        <figcaption style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.05em; color:#6e8898;">Fig. 03 — Todos los sistemas conectados a un mismo centro.</figcaption>
+      </figure>
+      <div style="flex:7 1 420px; min-width:0; display:flex; flex-direction:column; gap:20px;">
+        <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0 0 8px; max-width:680px; text-wrap:pretty;">Piensa en un coche. Detrás hay equipos con un foco muy claro, y cada uno es imprescindible:</p>
+          <div style="padding:1px; background:rgba(110,136,152,0.55); clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);">
+            <div style="background:#1e1e1c; clip-path:polygon(0 0, calc(100% - 21.6px) 0, 100% 21.6px, 100% 100%, 0 100%); padding:24px 28px 26px; display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                
+                <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.6vw,32px); text-transform:uppercase; line-height:1; color:#fefbea;">Mecánica</span>
+              </div>
+              <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; color:#fefbea; text-wrap:pretty;">Elige el motor y la transmisión y diseña un chasis que aguante las cargas.</p>
+              <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,1.8vw,20px); line-height:1.4; margin:0; color:#fefbea;">Su pregunta: ¿resistirá?</p>
+            </div>
+          </div>
+          <div style="padding:1px; background:rgba(110,136,152,0.55); clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);">
+            <div style="background:#1e1e1c; clip-path:polygon(0 0, calc(100% - 21.6px) 0, 100% 21.6px, 100% 100%, 0 100%); padding:24px 28px 26px; display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                
+                <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.6vw,32px); text-transform:uppercase; line-height:1; color:#fefbea;">Eléctrica</span>
+              </div>
+              <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; color:#fefbea; text-wrap:pretty;">Integra la potencia, el cableado y cada componente para que todo reciba lo que necesita.</p>
+              <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,1.8vw,20px); line-height:1.4; margin:0; color:#fefbea;">Su pregunta: ¿encaja y funciona?</p>
+            </div>
+          </div>
+          <div style="padding:1px; background:rgba(110,136,152,0.55); clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);">
+            <div style="background:#1e1e1c; clip-path:polygon(0 0, calc(100% - 21.6px) 0, 100% 21.6px, 100% 100%, 0 100%); padding:24px 28px 26px; display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                
+                <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.6vw,32px); text-transform:uppercase; line-height:1; color:#fefbea;">Software</span>
+              </div>
+              <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; color:#fefbea; text-wrap:pretty;">Conecta sistemas y sensores para que el coche responda.</p>
+              <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,1.8vw,20px); line-height:1.4; margin:0; color:#fefbea;">Su pregunta: ¿se entienden entre sí?</p>
+            </div>
+          </div>
+          <div style="padding:1px; background:#00f0f0; clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%); filter:drop-shadow(0 0 10px rgba(0,240,240,0.35));">
+            <div style="background:#1b2224; clip-path:polygon(0 0, calc(100% - 21.6px) 0, 100% 21.6px, 100% 100%, 0 100%); padding:24px 28px 26px; display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span aria-hidden="true" style="width:10px; height:10px; border-radius:50%; background:#00f0f0; box-shadow:0 0 0 4px rgba(0,240,240,0.15), 0 0 16px 4px rgba(0,240,240,0.55); flex:0 0 auto;"></span>
+                <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(24px,2.6vw,32px); text-transform:uppercase; line-height:1; color:#00f0f0;">Producto</span>
+              </div>
+              <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; margin:0; color:#fefbea; text-wrap:pretty;">Decide qué coche vamos a construir: para quién es, qué tiene que sentir quien lo conduce, qué pesa más, la estabilidad o la ligereza.</p>
+              <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(17px,1.8vw,20px); line-height:1.4; margin:0; color:#00f0f0;">Su pregunta: ¿es lo que el cliente necesita?</p>
+            </div>
+          </div>
+        <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:16px 0 0; max-width:680px; text-wrap:pretty; border-top:1px solid rgba(110,136,152,0.35); padding-top:24px;">Mi sitio es el cuarto. <span style="color:#00f0f0;">Hablo los dos idiomas</span>: el del cliente y el de la ingeniería. Defino qué tiene que hacer el producto, con criterio técnico suficiente para que sea alcanzable, y los especialistas lo hacen real, llevando cada parte más lejos de lo que yo podría. Ninguna capa funciona sin las otras.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section data-reveal-id="proyectos" ref="{{ proyectosRef }}" style="{{ proyectosRevealStyle }} border-top:1px solid rgba(110,136,152,0.35); display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+    <a href="producto.dc.html" style="background:#1e1e1c; color:#00f0f0; text-decoration:none; padding:80px 40px; display:flex; flex-direction:column; gap:16px; justify-content:center;">
+      <span style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.06em; color:#6e8898; text-transform:uppercase;">Índice 01</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(48px,7vw,88px); line-height:0.95;">Producto ▶</span>
+      <span style="font-family:'Fira Code', monospace; font-size:13px; color:#fefbea;">Grifería, mobiliario, objeto físico.</span>
+    </a>
+    <a href="grafico.dc.html" style="background:#fefbea; color:#1e1e1c; text-decoration:none; padding:80px 40px; display:flex; flex-direction:column; gap:16px; justify-content:center; border-left:1px solid rgba(110,136,152,0.35);">
+      <span style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.06em; color:#6e8898; text-transform:uppercase;">Índice 02</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(48px,7vw,88px); line-height:0.95; color:#3e7cb1;">Gráfico ▶</span>
+      <span style="font-family:'Fira Code', monospace; font-size:13px;">Identidad, contenido, pieza gráfica.</span>
+    </a>
+  </section>
+
+  <section id="contacto" data-reveal-id="contacto" ref="{{ contactoRef }}" style="scroll-margin-top:60px; background:#1e1e1c; color:#fefbea; display:grid; grid-template-columns:minmax(60px,90px) 1fr; gap:24px; padding:80px clamp(16px,4vw,48px) 96px; border-top:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898; text-transform:uppercase; border-right:1px solid rgba(110,136,152,0.35); padding-right:16px; align-self:start;">04<br>Contacto</div>
+    <div style="{{ contactoRevealStyle }}">
+    <div style="display:flex; flex-direction:column; gap:24px; max-width:640px;">
+      <h2 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(32px,5vw,56px); margin:0;">Hablemos</h2>
+      <div style="font-family:'Fira Code', monospace; font-size:14px; line-height:2; color:#6e8898;">
+        <div><a href="mailto:mariosanchisof@gmail.com" style="color:#fefbea; text-decoration:none;">mariosanchisof@gmail.com</a></div>
+        <div><a href="tel:+34622292068" style="color:#fefbea; text-decoration:none;">+34 622 292 068</a></div>
+        <div><a href="https://www.linkedin.com/in/mariosanchistormo" target="_blank" rel="noopener" style="color:#3e7cb1; text-decoration:none;">linkedin.com/in/mariosanchistormo</a></div>
+      </div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;">
+        <a href="mailto:mariosanchisof@gmail.com" style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; background:#00f0f0; color:#1e1e1c; padding:14px 28px; font-weight:600;">Escríbeme</a>
+        <a href="cv-mario-sanchis-tormo.pdf" download="CV_Mario_Sanchis_Tormo_ES.pdf" target="_blank" rel="noopener" style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid #6e8898; color:#fefbea; padding:13px 27px;" style-hover="background:#fefbea; color:#1e1e1c; border-color:#fefbea;">Descargar CV en PDF</a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    revealed: { quienSoy: false, trayectoria: false, comoTrabajo: false, proyectos: false, contacto: false },
+    ejeAbierto: null
+  };
+
+  constructor(props) {
+    super(props);
+    this.quienSoyRef = React.createRef();
+    this.trayectoriaRef = React.createRef();
+    this.comoTrabajoRef = React.createRef();
+    this.proyectosRef = React.createRef();
+    this.contactoRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const refs = {
+      quienSoy: this.quienSoyRef,
+      trayectoria: this.trayectoriaRef,
+      comoTrabajo: this.comoTrabajoRef,
+      proyectos: this.proyectosRef,
+      contacto: this.contactoRef
+    };
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.dataset.revealId;
+          this.setState((s) => ({ revealed: { ...s.revealed, [id]: true } }));
+          this.observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    Object.keys(refs).forEach((id) => {
+      if (refs[id].current) this.observer.observe(refs[id].current);
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.observer) this.observer.disconnect();
+  }
+
+  revealStyle(id) {
+    const on = this.state.revealed[id];
+    return {
+      opacity: on ? 1 : 0,
+      transform: on ? 'translateY(0)' : 'translateY(20px)',
+      transition: 'opacity 0.7s ease, transform 0.7s ease'
+    };
+  }
+
+  renderVals() {
+    const cifras = [
+      { numero: '6 → 40+', etiqueta: 'personas en 18 meses', origen: 'Talpa Tunneling UPV' },
+      { numero: 'Top 8', etiqueta: 'mundial, único equipo europeo clasificado', origen: 'Not-a-Boring Competition' },
+      { numero: '1.º', etiqueta: 'del mundo', origen: 'European Hyperloop Week 2024' },
+      { numero: '+30.000 €', etiqueta: 'en patrocinio en especie', origen: 'Hyperloop UPV' }
+    ];
+
+    const trayectoria = [
+      { fechas: 'Abril – junio 2026', cargo: 'Ingeniero de Innovación · Prácticas', organizacion: 'Simetría Grupo, Departamento de Innovación', descripcion: 'Proyectos de innovación e I+D para empresas cliente, en contacto directo con dirección técnica y equipos de ingeniería. Informes técnicos y documentación para convocatorias públicas de financiación de I+D (CDTI, IVACE). Seguimiento de plazos y entregables y comunicación con cliente.' },
+      { fechas: 'Septiembre 2024 – febrero 2026, compatibilizado con el grado', cargo: 'Chief Operating Officer · Cofundador', organizacion: 'Talpa Tunneling UPV', descripcion: 'Dirección operativa de principio a fin: alcance, cronograma, hitos, presupuesto y entregables, hasta la clasificación para la final mundial (Top 8, único equipo europeo). Coordinación de ingeniería, producción, marketing y RRHH. Estructura departamental, selección y formación interna: de 6 a más de 40 personas en 18 meses. Proveedores, plazos, logística y costes.' },
+      { fechas: 'Septiembre 2023 – octubre 2024, jornada parcial', cargo: 'Responsable de Patrocinios y Comunicación', organizacion: 'Hyperloop UPV', descripcion: 'Captación de patrocinadores: prospección, propuestas y negociación. Más de 30.000 € en patrocinio en especie. Punto de contacto con los socios y dirección de la academia formativa interna.' },
+      { fechas: '2022 – 2026', cargo: 'Grado en Ingeniería en Diseño Industrial y Desarrollo de Productos', organizacion: 'UPV', descripcion: 'Especialidad en Diseño Avanzado de Productos Industriales. Formación complementaria: Week [Emprende], Top Skills para Emprender, Prevención de Riesgos Laborales y Primeros Auxilios.' }
+    ];
+
+    const hitos = [
+      { id: 'hito-18', edad: '18', etiqueta: 'UPV · 2022–23', curso: '2022–23', titulo: 'La primera puerta', hecho: 'Empiezo Ingeniería en Diseño Industrial y Desarrollo de Productos en la UPV. Ese mismo curso entro como alumno en la academia formativa de Hyperloop UPV, sin saber todavía que sería el primer paso de todo lo demás.' },
+      { id: 'hito-19', edad: '19', etiqueta: 'Hyperloop UPV · 2023–24', curso: '2023–24', titulo: 'De alumno a responsable', hecho: 'Un año después dejo de ser alumno y paso a dirigir la propia academia formativa. Entro en el equipo de patrocinios: capto más de 30.000 € en patrocinio en especie, todos de patrocinadores nuevos, me aseguro de que cada uno reciba sus contrapartidas y llevo el LinkedIn del equipo. Es la primera vez que alguien me confía una relación real con empresas.' },
+      { id: 'hito-20', edad: '20', etiqueta: 'Hyperloop UPV · Talpa Tunneling UPV · 2024–25', curso: '2024–25', titulo: 'Campeones, y un salto al vacío', hecho: 'En julio somos campeones del mundo en la European Hyperloop Week. Podría haberme quedado ahí. En su lugar, cofundo Talpa Tunneling UPV y asumo la dirección de operaciones de un proyecto que arranca de cero: seis personas, ninguna máquina todavía y la idea de construir una tuneladora desde el primer tornillo. Ese curso construyo la base de todo lo demás: la marca, con su misión, visión, valores y logotipo; la organización en departamentos, con un responsable en cada uno; el espacio de trabajo compartido en el ecosistema de Microsoft; y la captación y la formación de los primeros integrantes. Acabamos el curso siendo más de 40.' },
+      { id: 'hito-21', edad: '21', etiqueta: 'Talpa Tunneling UPV · Simetría Grupo · 2025–26', curso: '2025–26', titulo: 'Cuando toca dar un paso más', hecho: 'En verano, otro equipo nos advierte de que el sistema que habíamos planteado no iba a funcionar. Hay que rehacer la mitad del diseño, con el equipo de vacaciones y la documentación de la competición esperando en septiembre. Asumo la dirección del departamento de diseño estructural, empiezo el diseño del chasis y me pongo a coordinar a todos los departamentos técnicos, de mecánica a sistemas eléctricos, firmware y software, para que lleguemos a septiembre con una sola propuesta. Mientras, sigo cerrando patrocinios: en torno a 25.000 € para el equipo. En otoño formo un nuevo equipo de marketing y organizo cómo redactan cuarenta personas un mismo documento. Esa documentación nos lleva a la final mundial: ocho equipos de todo el mundo, y el único europeo, donde gracias a la propuesta que presentamos el equipo recibió el premio a la innovación. Ese mismo curso entro en Simetría Grupo como ingeniero de innovación en prácticas, desarrollo desde cero mi Trabajo Final de Grado, un proyecto técnico completo cerrado en menos de dos meses con un 9,7, y termino la carrera.' },
+      { id: 'hito-22', edad: '22', etiqueta: 'Hoy · 2026', curso: '2026', titulo: 'Lo que viene', hecho: 'Acabo de terminar la carrera y busco mi primer puesto en management, gestionando departamentos y proyectos, o en diseño de producto. Estos meses los he dedicado a afilar herramientas: aprender a trabajar con IA en proyectos reales e investigar los sectores donde quiero trabajar. Este portfolio es la prueba: los renders que ves los he rehecho yo en estas semanas.' }
+    ];
+
+    const resumenes = [
+      '18 — Empiezo el grado en la UPV y entro en la academia de Hyperloop',
+      '19 — Dirijo la academia y capto +30.000 € en patrocinio en especie',
+      '20 — Campeones del mundo en Hyperloop y cofundo Talpa: de 6 a más de 40',
+      '21 — Diseño estructural, final mundial y premio a la innovación; TFG y Simetría Grupo',
+      '22 — Termino la carrera y busco mi primer puesto en management o producto'
+    ];
+    const abierto = this.state.ejeAbierto;
+
+    const ejeEdades = ['18', '19', '20', '21', '22'].map((edad, i) => {
+      const activo = abierto === i;
+      return {
+        edad,
+        hito: resumenes[i],
+        ancla: '#hito-' + edad,
+        activoAttr: activo ? '1' : '0',
+        expandedAria: activo ? 'true' : 'false',
+        aria: resumenes[i],
+        onClick: () => this.setState((s) => ({ ejeAbierto: s.ejeAbierto === i ? null : i })),
+        onEnter: () => this.setState({ ejeAbierto: i }),
+        onVerMas: (ev) => {
+          ev.preventDefault();
+          const el = document.getElementById('hito-' + edad);
+          if (!el) return;
+          const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 70;
+          window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+        },
+        wrapStyle: {
+          position: 'relative',
+          flex: activo ? '0 0 auto' : '1 1 0',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        },
+        rowStyle: {
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          minHeight: '40px',
+          padding: '0 10px 0 10px',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          textAlign: 'left'
+        },
+        edadStyle: {
+          fontFamily: "'Fira Code', monospace",
+          fontSize: '12px',
+          color: activo ? '#00f0f0' : '#fefbea',
+          width: '24px'
+        },
+        dotStyle: {
+          position: 'absolute',
+          left: activo ? '29px' : '31px',
+          width: activo ? '11px' : '7px',
+          height: activo ? '11px' : '7px',
+          background: activo ? '#00f0f0' : 'rgba(0,240,240,0.85)',
+          transform: 'rotate(45deg)',
+          transition: 'all 0.15s linear'
+        },
+        tickStyle: {
+          position: 'absolute',
+          left: '48px',
+          height: '1px',
+          width: activo ? 'calc(100% - 60px)' : (26 + i * 17) + '%',
+          maxWidth: 'calc(100% - 60px)',
+          background: activo ? '#00f0f0' : 'rgba(110,136,152,0.7)',
+          transition: 'width 0.15s linear'
+        },
+        panelStyle: {
+          display: activo ? 'flex' : 'none',
+          flexDirection: 'column',
+          gap: '8px',
+          padding: '4px 12px 14px 48px',
+          borderLeft: '1px solid rgba(0,240,240,0.35)',
+          marginLeft: '34px'
+        }
+      };
+    });
+
+    const irA = (id) => (ev) => {
+      ev.preventDefault();
+      const el = document.getElementById(id);
+      if (!el) return;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 60;
+      window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    };
+
+    const secciones = [
+      { num: 'Sec. 01', nombre: 'Quién soy', ancla: '#sec-quien-soy', onClick: irA('sec-quien-soy') },
+      { num: 'Sec. 02', nombre: 'Trayectoria', ancla: '#sec-trayectoria', onClick: irA('sec-trayectoria') },
+      { num: 'Sec. 03', nombre: 'Cómo trabajo', ancla: '#sec-como-trabajo', onClick: irA('sec-como-trabajo') },
+      { num: 'Sec. 04', nombre: 'Contacto', ancla: '#contacto', onClick: irA('contacto') }
+    ];
+
+    return {
+      cifras,
+      trayectoria,
+      hitos,
+      ejeEdades,
+      secciones,
+      quienSoyRef: this.quienSoyRef,
+      trayectoriaRef: this.trayectoriaRef,
+      comoTrabajoRef: this.comoTrabajoRef,
+      proyectosRef: this.proyectosRef,
+      contactoRef: this.contactoRef,
+      quienSoyRevealStyle: this.revealStyle('quienSoy'),
+      trayectoriaRevealStyle: this.revealStyle('trayectoria'),
+      comoTrabajoRevealStyle: this.revealStyle('comoTrabajo'),
+      proyectosRevealStyle: this.revealStyle('proyectos'),
+      contactoRevealStyle: this.revealStyle('contacto')
+    };
+  }
+}
+</script>
+</body>
+</html>

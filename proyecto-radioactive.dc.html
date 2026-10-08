@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Radio Active — Mario Sanchis Tormo</title>
+  <meta name="description" content="Radio Active: packaging y gráfica para una piruleta pre-entreno con proteína y cafeína.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    #miniaturas::-webkit-scrollbar { height: 6px; }
+    #miniaturas::-webkit-scrollbar-thumb { background: #6e8898; }
+    #miniaturas [data-activo="1"] { box-shadow: inset 0 0 0 3px #00f0f0; }
+    #miniaturas button:focus-visible { outline: 2px solid #00f0f0; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="producto" hint-size="100%,52px"></dc-import>
+
+<main style="background:#fefbea; color:#1e1e1c; padding-top:52px;">
+
+  <header style="background:#1e1e1c; color:#fefbea; padding:64px clamp(16px,4vw,48px) 40px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase; margin-bottom:20px;"><a href="producto.dc.html" style="color:#6e8898; text-decoration:none;">Producto</a> / 06 — Radio Active</div>
+    <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(44px,9vw,124px); line-height:0.9; margin:0;">Radio Active</h1>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(18px,2.4vw,28px); line-height:1.35; color:#fefbea; margin:18px 0 32px; max-width:760px;">Packaging para piruletas deportivas</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; border-top:1px solid rgba(110,136,152,0.35);">
+      <sc-for list="{{ etiquetas }}" as="e" hint-placeholder-count="4">
+        <div style="border-left:1px solid rgba(110,136,152,0.35); padding:20px 20px 4px; display:flex; flex-direction:column; gap:8px; min-width:0;">
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">{{ e.clave }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.6; color:#fefbea;">{{ e.valor }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </header>
+
+  <section style="background:#1e1e1c; padding:48px clamp(16px,4vw,48px) 56px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; flex-wrap:wrap;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase;">Visor — {{ visorIndicador }}</span>
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">← → para navegar</span>
+    </div>
+    <div style="border:1px solid #00f0f0; background:#1e1e1c; aspect-ratio:16/9; width:100%; overflow:hidden;">
+      <sc-if value="{{ grande.esImagen }}" hint-placeholder-val="{{ true }}">
+        <img src="{{ grande.src }}" alt="{{ grande.alt }}" style="width:100%; height:100%; object-fit:contain; display:block;">
+      </sc-if>
+      <sc-if value="{{ grande.video }}" hint-placeholder-val="{{ false }}">
+        <div style="height:100%; aspect-ratio:9/16; max-width:100%; margin:0 auto;"><iframe src="{{ grande.embed }}" title="{{ grande.alt }}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="true" style="width:100%; height:100%; border:0; display:block;"></iframe></div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ grande.video }}" hint-placeholder-val="{{ false }}"><a href="{{ grande.watch }}" target="_blank" rel="noopener" style="display:inline-flex; margin-top:10px; align-self:center; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#fefbea; border:1px solid rgba(110,136,152,0.5); padding:6px 10px; text-decoration:none;" style-hover="border-color:#00f0f0; color:#00f0f0;">Ver en YouTube ↗</a></sc-if>
+    <div id="miniaturas" role="tablist" aria-label="Miniaturas del proyecto" style="display:flex; gap:10px; overflow-x:auto; padding:14px 2px 6px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+      <sc-for list="{{ miniaturas }}" as="m" hint-placeholder-count="2">
+        <button type="button" role="tab" aria-selected="{{ m.activoAria }}" data-activo="{{ m.activoAttr }}" aria-label="{{ m.aria }}" onClick="{{ m.onClick }}" onKeyDown="{{ m.onKeyDown }}" style="{{ m.style }}" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+          <img src="{{ m.src }}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <sc-if value="{{ m.video }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(30,30,28,0.35);">
+              <span style="font-family:'Fira Code', monospace; font-size:12px; letter-spacing:0.08em; color:#fefbea; background:#1e1e1c; border:1px solid #00f0f0; padding:6px 10px;">▶ VÍDEO</span>
+            </span>
+          </sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">01 — El encargo</div>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Un proyecto de packaging completo: diseñar tanto el envase físico como toda su gráfica, para un producto que inventamos desde cero.</p>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:24px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">02 — Concepto</div>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(24px,3.4vw,40px); line-height:1.25; margin:0; max-width:900px; text-wrap:pretty;">Durante décadas, el cigarro fue el símbolo del rebelde: el que iba a contracorriente, el que parecía peligroso.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Esa aura se ha perdido y lo único que queda es el gesto, llevarse algo a la boca. Radio Active recupera el gesto y la sensación de peligro, y les da la vuelta. Es una piruleta para deportistas, alta en proteína y con cafeína, pensada para tomarse antes de entrenar. La estética dice radiactivo; el producto, justo lo contrario.</p>
+    <div style="display:flex; flex-direction:column; max-width:900px; border-bottom:1px solid rgba(110,136,152,0.35);">
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ El producto</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Pre-entreno en formato piruleta: proteína y cafeína.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ La actitud</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">El gesto del rebelde, sin nada de lo que lo hacía dañino.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ La estética</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Lenguaje radiactivo para un producto que es lo contrario de tóxico.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">03 — Qué hice</div>
+    <ul style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; padding-left:20px; max-width:760px; display:flex; flex-direction:column; gap:12px;">
+      <li>Desarrollé el concepto de producto y la marca Radio Active.</li>
+      <li>Diseñé el packaging físico: estructura, formato y presentación del envase.</li>
+      <li>Diseñé la gráfica del packaging, coherente con la identidad radiactiva de la marca.</li>
+    </ul>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">04 — Créditos</div>
+    <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#1e1e1c; margin:0; max-width:760px;">Proyecto de clase en pareja con <a href="https://www.instagram.com/marcosf015/" target="_blank" rel="noopener">@marcosf015</a>; desarrollé la mayor parte del concepto, el packaging y la gráfica. Yo: <a href="https://www.instagram.com/magneticmario/" target="_blank" rel="noopener">@magneticmario</a>.</p>
+  </section>
+
+  <nav style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <a href="proyecto-altavoz.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">◀ Anterior</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">Altavoz inalámbrico</span>
+    </a>
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); background:rgba(62,124,177,0.08); align-items:center; justify-content:center;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Volver a</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase; color:#3e7cb1;">Todos los proyectos</span>
+    </a>
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); text-align:right; align-items:flex-end;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Siguiente ▶</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">Índice de producto</span>
+    </a>
+  </nav>
+
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  fotos = [
+    { src: 'media/radioactive-01.jpg', alt: 'Radio Active — dos envases sobre una balda' },
+    { video: 'BWmvFN37XNI', src: 'https://i.ytimg.com/vi/BWmvFN37XNI/hqdefault.jpg', alt: 'Radio Active — vídeo' },
+    { src: 'media/radioactive-02.jpg', alt: 'Radio Active — reverso del envase' }
+  ];
+  state = { orden: this.fotos.map((_, i) => i) };
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (e.key === 'ArrowRight') this.rotar(1);
+      else if (e.key === 'ArrowLeft') this.rotar(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); }
+
+  intercambiar(pos) {
+    this.setState((s) => {
+      const orden = s.orden.slice();
+      [orden[0], orden[pos]] = [orden[pos], orden[0]];
+      return { orden };
+    });
+  }
+  rotar(dir) {
+    const n = this.state.orden.length;
+    if (n < 2) return;
+    this.intercambiar(dir > 0 ? 1 : n - 1);
+  }
+
+  renderVals() {
+    const fotos = this.fotos;
+    const orden = this.state.orden;
+    const miniaturas = orden.map((fi, pos) => {
+      const activo = pos === 0;
+      return {
+        src: fotos[fi].src,
+        video: !!fotos[fi].video,
+        activoAttr: activo ? '1' : '0',
+        activoAria: activo ? 'true' : 'false',
+        aria: (activo ? 'En el visor: ' : 'Mostrar en el visor: ') + fotos[fi].alt,
+        onClick: () => { if (!activo) this.intercambiar(pos); },
+        onKeyDown: (e) => { if ((e.key === 'Enter' || e.key === ' ') && !activo) { e.preventDefault(); this.intercambiar(pos); } },
+        style: { flex: '0 0 auto', width: 'clamp(112px,16vw,168px)', aspectRatio: '16 / 10', padding: 0, border: '1px solid rgba(110,136,152,0.5)', background: '#1e1e1c', cursor: activo ? 'default' : 'pointer', scrollSnapAlign: 'start', transition: 'box-shadow 0.12s linear', display: 'block', overflow: 'hidden', position: 'relative' }
+      };
+    });
+    return {
+      etiquetas: [
+        { clave: 'Año', valor: '2025' },
+        { clave: 'Tipo', valor: 'Packaging y diseño gráfico' },
+        { clave: 'Mi rol', valor: 'Diseño de producto, gráfico y packaging' },
+        { clave: 'Herramientas', valor: 'Illustrator · Vizcom' }
+      ],
+      grande: (() => { const g = fotos[orden[0]]; return { ...g, video: !!g.video, esImagen: !g.video, embed: g.video ? 'https://www.youtube-nocookie.com/embed/' + g.video + '?rel=0' : '', watch: g.video ? 'https://www.youtube.com/shorts/' + g.video : '' }; })(),
+      miniaturas,
+      visorIndicador: String(orden[0] + 1).padStart(2, '0') + ' / ' + String(fotos.length).padStart(2, '0')
+    };
+  }
+}
+</script>
+</body>
+</html>

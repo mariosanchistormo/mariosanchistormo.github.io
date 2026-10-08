@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Gráfico — Mario Sanchis Tormo</title>
+  <meta name="description" content="Sección de diseño gráfico del portfolio de Mario Sanchis Tormo, en preparación.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="grafico" hint-size="100%,52px"></dc-import>
+
+<main style="background:#fefbea; color:#1e1e1c; padding-top:52px; min-height:calc(100vh - 132px); display:flex; align-items:center; justify-content:center; box-sizing:border-box;">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center; padding:96px clamp(16px,4vw,48px); max-width:640px;">
+    <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(56px,10vw,128px); line-height:0.9; margin:0;">Gráfico</h1>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; text-wrap:pretty;">Estoy preparando esta sección. Mientras tanto, el trabajo de producto está en la pestaña <a href="producto.dc.html">Producto</a>.</p>
+  </div>
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+</x-dc>
+</body>
+</html>

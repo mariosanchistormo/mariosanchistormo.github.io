@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Tozzo — Mario Sanchis Tormo</title>
+  <meta name="description" content="Tozzo: colección de grifería y accesorios de baño, de concepto a producción.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    #miniaturas::-webkit-scrollbar { height: 6px; }
+    #miniaturas::-webkit-scrollbar-thumb { background: #6e8898; }
+    #miniaturas [data-activo="1"] { box-shadow: inset 0 0 0 3px #00f0f0; }
+    #miniaturas button:focus-visible { outline: 2px solid #00f0f0; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="producto" hint-size="100%,52px"></dc-import>
+
+<main style="background:#fefbea; color:#1e1e1c; padding-top:52px;">
+
+  <header style="background:#1e1e1c; color:#fefbea; padding:64px clamp(16px,4vw,48px) 40px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase; margin-bottom:20px;"><a href="producto.dc.html" style="color:#6e8898; text-decoration:none;">Producto</a> / 01 — Tozzo</div>
+    <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(44px,9vw,124px); line-height:0.9; margin:0;">Tozzo</h1>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(18px,2.4vw,28px); line-height:1.35; color:#fefbea; margin:18px 0 32px; max-width:760px;">Colección de grifería para interiorismo y baño.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; border-top:1px solid rgba(110,136,152,0.35);">
+      <sc-for list="{{ etiquetas }}" as="e" hint-placeholder-count="4">
+        <div style="border-left:1px solid rgba(110,136,152,0.35); padding:20px 20px 4px; display:flex; flex-direction:column; gap:8px; min-width:0;">
+          <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">{{ e.clave }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.6; color:#fefbea;">{{ e.valor }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </header>
+
+  <section ref="{{ visorRef }}" style="background:#1e1e1c; padding:48px clamp(16px,4vw,48px) 56px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; flex-wrap:wrap;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#6e8898; text-transform:uppercase;">Visor — {{ visorIndicador }}</span>
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898;">← → para navegar</span>
+    </div>
+
+    <div style="border:1px solid #00f0f0; background:#1e1e1c; aspect-ratio:16/9; width:100%; overflow:hidden;">
+      <img src="{{ grande.src }}" alt="{{ grande.alt }}" style="width:100%; height:100%; object-fit:contain; display:block;">
+    </div>
+
+    <div id="miniaturas" role="tablist" aria-label="Miniaturas del proyecto" style="display:flex; gap:10px; overflow-x:auto; padding:14px 2px 6px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;">
+      <sc-for list="{{ miniaturas }}" as="m" hint-placeholder-count="8">
+        <button type="button" role="tab" aria-selected="{{ m.activoAria }}" data-activo="{{ m.activoAttr }}" aria-label="{{ m.aria }}" onClick="{{ m.onClick }}" onKeyDown="{{ m.onKeyDown }}" style="{{ m.style }}" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+          <img src="{{ m.src }}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">01 — El encargo</div>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Tozzo es una colección de grifería de baño que diseñamos tres compañeros de carrera a partir de una pregunta: ¿qué forma tiene un objeto que representa a alguien que se ha construido a sí mismo? Partimos de un grifo principal con ese carácter, y a partir de él cada uno desarrolló una tipología distinta de la colección. Yo me encargué de la ducha y los accesorios de baño.</p>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:24px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">02 — Concepto</div>
+    <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(24px,3.4vw,40px); line-height:1.25; margin:0; max-width:900px; text-wrap:pretty;">Hay plantas que crecen bajo una piedra.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">No tienen un tallo recto porque no pueden tenerlo: han tenido que retorcerse para encontrar su propio camino hacia la luz, y esa lucha es lo que las hace fuertes. Ese es el punto de partida de Tozzo: un grifo cuyo cuerpo se tuerce sobre sí mismo, no como decoración, sino como huella de un esfuerzo. La persona que lo tiene en su baño es alguien que se ha esculpido a sí mismo para destacar, con estatus pero con los pies en la tierra.</p>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Esa idea se traduce en tres decisiones formales que se repiten en toda la colección:</p>
+    <div style="display:flex; flex-direction:column; max-width:900px; border-bottom:1px solid rgba(110,136,152,0.35);">
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ La torsión</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">El cuerpo nunca es recto; se retuerce como la planta bajo la piedra.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ Las aristas vivas</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Cortes marcados en vez de curvas suaves, para transmitir fuerza y resiliencia.</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 32px; padding:18px 0; border-top:1px solid rgba(110,136,152,0.35);">
+        <span style="font-family:'Fira Code', monospace; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#00f0f0; flex:1 1 200px;">◆ El volumen pesado</span>
+        <span style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#fefbea; flex:2 1 360px; min-width:0;">Piezas que se sienten sólidas, pensadas para baños contemporáneos en negro y gris.</span>
+      </div>
+    </div>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Cada pieza hereda las tres reglas, pero las dosifica según su función: el grifo y el monomando llevan el volumen y las aristas al máximo, mientras que la alcachofa de mano y el toallero de manos suavizan el peso para poder usarse con comodidad, sin perder la torsión que los hace parte de la misma familia.</p>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="margin-bottom:24px;"><div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">03 — Piezas de la colección</div><div style="font-family:'Fira Code', monospace; font-size:11px; color:#6e8898; margin-top:8px;">Pulsa una imagen para verla en el visor.</div></div>
+    <div style="display:flex; flex-direction:column; border-bottom:1px solid rgba(110,136,152,0.3);">
+      <sc-for list="{{ piezas }}" as="p" hint-placeholder-count="7">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px 32px; padding:24px 0; border-top:1px solid rgba(110,136,152,0.3); align-items:center;">
+          <div style="display:grid; grid-template-columns:40px minmax(0,1fr); gap:16px;">
+            <span style="font-family:'Fira Code', monospace; font-size:13px; color:#6e8898; padding-top:4px;">{{ p.numero }}</span>
+            <div style="display:flex; flex-direction:column; gap:6px; min-width:0;">
+              <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(20px,2.4vw,26px); text-transform:uppercase; line-height:1;">{{ p.nombre }}</span>
+              <span style="font-family:'Fira Code', monospace; font-size:13px; line-height:1.6; color:#1e1e1c;">{{ p.linea }}</span>
+              <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#3e7cb1;">{{ p.autoria }}</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; scrollbar-color:#6e8898 transparent; scroll-snap-type:x mandatory; padding-bottom:4px; min-width:0;">
+            <sc-for list="{{ p.tira }}" as="t" hint-placeholder-count="4">
+              <sc-if value="{{ t.src }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ t.onClick }}" aria-label="{{ t.aria }}" title="Ver en grande" style="{{ t.style }}" style-hover="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3);" style-focus="border-color:#3e7cb1; box-shadow:0 0 0 1px #3e7cb1, 0 0 14px rgba(62,124,177,0.3); outline:none;">
+                  <img src="{{ t.src }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </button>
+              </sc-if>
+              <sc-if value="{{ t.sinFoto }}" hint-placeholder-val="{{ false }}">
+                <span style="flex:0 0 auto; width:118px; height:118px; display:block; border:1px solid rgba(110,136,152,0.4); background:#fefbea;">
+                  <image-slot id="{{ t.id }}" shape="rect" placeholder="{{ t.placeholder }}"></image-slot>
+                </span>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#1e1e1c; color:#fefbea; padding:72px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:24px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#00f0f0; text-transform:uppercase;">04 — La ducha en el espacio</div>
+    <p style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; max-width:680px; text-wrap:pretty;">Las piezas de la ducha, instaladas juntas.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; align-items:start;">
+      <sc-for list="{{ ducha }}" as="d" hint-placeholder-count="2">
+        <button type="button" onClick="{{ d.onClick }}" aria-label="{{ d.aria }}" title="Ver en grande" style="padding:0; border:1px solid rgba(110,136,152,0.35); background:#1e1e1c; cursor:zoom-in; display:block; width:100%;" style-hover="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35);" style-focus="border-color:#00f0f0; box-shadow:0 0 0 1px #00f0f0, 0 0 14px rgba(0,240,240,0.35); outline:none;">
+          <img src="{{ d.src }}" alt="{{ d.alt }}" loading="lazy" style="width:100%; height:auto; display:block;">
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:56px clamp(16px,4vw,48px); display:flex; flex-direction:column; gap:16px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">05 — Qué hice</div>
+    <ul style="font-family:'Fira Code', monospace; font-size:15px; line-height:1.85; margin:0; padding-left:20px; max-width:760px; display:flex; flex-direction:column; gap:12px;">
+      <li>Definí junto con mis dos compañeros el lenguaje formal del grifo principal y el concepto narrativo detrás de él.</li>
+      <li>Diseñé la tipología completa de ducha: alcachofa de pared, monomando y alcachofa de mano, dosificando peso y torsión según la función de cada pieza.</li>
+      <li>Diseñé los accesorios: soporte de la alcachofa, toallero de manos y toallero de pared, llevando la torsión del grifo a su expresión más extrema.</li>
+      <li>Modelé y rendericé el conjunto en SolidWorks, Blender y KeyShot.</li>
+    </ul>
+  </section>
+
+  <sc-if value="{{ hayCreditos }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:56px clamp(16px,4vw,48px); border-bottom:1px solid rgba(110,136,152,0.35);">
+      <div style="margin-bottom:24px;"><div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.08em; color:#3e7cb1; text-transform:uppercase;">06 — Créditos</div></div>
+      <p style="font-family:'Fira Code', monospace; font-size:14px; line-height:1.75; color:#1e1e1c; margin:0; max-width:760px;">Diseño conjunto del grifo principal con Beatriz (<a href="https://www.instagram.com/beandraddeee/" target="_blank" rel="noopener">@beandraddeee</a>) y Marc (<a href="https://www.instagram.com/marc_monti_04/" target="_blank" rel="noopener">@marc_monti_04</a>). Yo: <a href="https://www.instagram.com/magneticmario/" target="_blank" rel="noopener">@magneticmario</a>.</p>
+    </section>
+  </sc-if>
+
+  <nav style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); border-bottom:1px solid rgba(110,136,152,0.35);">
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">◀ Anterior</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">Índice de producto</span>
+    </a>
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); background:rgba(62,124,177,0.08); align-items:center; justify-content:center;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Volver a</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase; color:#3e7cb1;">Todos los proyectos</span>
+    </a>
+    <a href="producto.dc.html" style="padding:36px clamp(16px,4vw,48px); text-decoration:none; display:flex; flex-direction:column; gap:8px; color:#1e1e1c; border-left:1px solid rgba(110,136,152,0.35); text-align:right; align-items:flex-end;">
+      <span style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.1em; color:#6e8898; text-transform:uppercase;">Siguiente ▶</span>
+      <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:24px; text-transform:uppercase;">Próximo proyecto</span>
+    </a>
+  </nav>
+
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  // orden[0] es la imagen del visor grande; el resto es la fila de miniaturas.
+  // orden[0] es la foto que ocupa el visor grande; la tira muestra TODAS las fotos
+  // en este mismo orden, y la de posición 0 es la marcada en azul eléctrico.
+  grupos = [
+    ['Grifo principal', ['grifo-01', 'grifo-02', 'grifo-03', 'grifo-04', 'grifo-05', 'grifo-06', 'grifo-07', 'grifo-08']],
+    ['Alcachofa de pared', ['alcachofa-pared-01', 'alcachofa-pared-02', 'alcachofa-pared-03']],
+    ['Monomando', ['monomando-01', 'monomando-02', 'monomando-03']],
+    ['Alcachofa de mano', ['alcachofa-mano-01', 'alcachofa-mano-02', 'alcachofa-mano-03']],
+    ['Soporte de alcachofa', ['soporte-01', 'soporte-02', 'soporte-03', 'soporte-04']],
+    ['Toallero de manos', ['toallero-manos-01', 'toallero-manos-02', 'toallero-manos-03']],
+    ['Toallero de pared', ['toallero-pared-01', 'toallero-pared-02']],
+    ['La ducha en el espacio', ['ducha-01.jpg', 'ducha-02.jpg']]
+  ];
+  fotos = this.grupos.flatMap(([pieza, ns]) => ns.map((n) => ({
+    src: 'media/tozzo-' + (n.includes('.') ? n : n + '.jpg'), pieza, alt: 'Tozzo — ' + pieza.toLowerCase()
+  })));
+  state = { orden: this.fotos.map((_, i) => i) };
+  visorRef = React.createRef();
+
+  mostrar(fi) {
+    const pos = this.state.orden.indexOf(fi);
+    if (pos > 0) this.intercambiar(pos);
+    const el = this.visorRef.current;
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' });
+  }
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (e.key === 'ArrowRight') this.rotar(1);
+      else if (e.key === 'ArrowLeft') this.rotar(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKey);
+  }
+
+  // Intercambia: la miniatura en posición thumbPos (1..n-1) pasa al visor,
+  // y la que estaba en el visor ocupa exactamente esa posición.
+  intercambiar(thumbPos) {
+    this.setState((s) => {
+      const orden = s.orden.slice();
+      const tmp = orden[0];
+      orden[0] = orden[thumbPos];
+      orden[thumbPos] = tmp;
+      return { orden };
+    });
+  }
+
+  rotar(dir) {
+    const n = this.state.orden.length;
+    if (n < 2) return;
+    const pos = dir > 0 ? 1 : n - 1;
+    this.intercambiar(pos);
+  }
+
+  renderVals() {
+    const fotos = this.fotos;
+
+    const orden = this.state.orden;
+    const grande = fotos[orden[0]];
+
+    const miniaturas = orden.map((fotoIdx, pos) => {
+      const activo = pos === 0;
+      return {
+        ...fotos[fotoIdx],
+        activoAttr: activo ? '1' : '0',
+        activoAria: activo ? 'true' : 'false',
+        aria: (activo ? 'En el visor: ' : 'Mostrar en el visor: ') + fotos[fotoIdx].alt,
+        onClick: () => { if (!activo) this.intercambiar(pos); },
+        onKeyDown: (e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && !activo) { e.preventDefault(); this.intercambiar(pos); }
+        },
+        style: {
+          flex: '0 0 auto',
+          width: 'clamp(112px,16vw,168px)',
+          aspectRatio: '16 / 10',
+          padding: 0,
+          border: '1px solid rgba(110,136,152,0.5)',
+          background: '#1e1e1c',
+          cursor: activo ? 'default' : 'pointer',
+          scrollSnapAlign: 'start',
+          transition: 'box-shadow 0.12s linear, transform 0.12s linear',
+          display: 'block',
+          overflow: 'hidden'
+        }
+      };
+    });
+
+    const creditos = [
+      { nombre: 'Marc Montiel', papel: 'Diseño conjunto del grifo principal' },
+      { nombre: 'Beatriz Andreade', papel: 'Diseño conjunto del grifo principal' }
+    ];
+
+        const piezasData = [
+      ['Grifo principal', 'El origen de la torsión y las aristas', true],
+      ['Alcachofa de pared', 'Máximo volumen, retoma el lateral del grifo', false],
+      ['Monomando', 'El mismo peso y la misma fuerza que el grifo', false],
+      ['Alcachofa de mano', 'La torsión se mantiene, el peso se suaviza para el uso', false],
+      ['Soporte de alcachofa', 'La pieza de sujeción, con las aristas de la colección', false],
+      ['Toallero de manos', 'La torsión se vuelve más orgánica', false],
+      ['Toallero de pared', 'La torsión más extendida de toda la colección', false]
+    ];
+    const actual = orden[0];
+    const thumb = (fi) => ({
+      src: fotos[fi].src, sinFoto: false,
+      aria: 'Ver en el visor: ' + fotos[fi].alt,
+      onClick: () => this.mostrar(fi),
+      style: { flex: '0 0 auto', width: '118px', height: '118px', padding: 0, display: 'block', overflow: 'hidden', cursor: 'zoom-in', scrollSnapAlign: 'start', background: '#fefbea', border: fi === actual ? '2px solid #3e7cb1' : '1px solid rgba(110,136,152,0.4)', boxSizing: 'border-box', transition: 'border-color 0.12s linear' }
+    });
+    const idxDe = (pieza) => fotos.map((f, i) => f.pieza === pieza ? i : -1).filter((i) => i >= 0);
+    const piezas = piezasData.map(([nombre, linea, conjunto], i) => ({
+      numero: String(i + 1).padStart(2, '0'),
+      nombre, linea,
+      autoria: conjunto ? 'Diseño conjunto' : 'Diseño propio',
+      tira: idxDe(nombre).length
+        ? idxDe(nombre).map(thumb)
+        : [1, 2].map((k) => ({ src: '', sinFoto: true, id: 'tozzo-pieza-' + (i + 1) + '-' + k, placeholder: nombre + ' — foto' }))
+    }));
+    const ducha = idxDe('La ducha en el espacio').map((fi) => ({ src: fotos[fi].src, alt: fotos[fi].alt, aria: 'Ver en el visor: ' + fotos[fi].alt, onClick: () => this.mostrar(fi) }));
+
+    return {
+      etiquetas: [
+        { clave: 'Año', valor: '2024' },
+        { clave: 'Tipo', valor: 'Diseño de producto' },
+        { clave: 'Mi rol', valor: 'Ducha y accesorios de baño · grifo principal en diseño conjunto' },
+        { clave: 'Herramientas', valor: 'SolidWorks · Blender · KeyShot' }
+      ],
+      grande,
+      miniaturas,
+      visorIndicador: String(orden[0] + 1).padStart(2, '0') + ' / ' + String(fotos.length).padStart(2, '0') + ' · ' + fotos[orden[0]].pieza,
+      visorRef: this.visorRef,
+      ducha,
+      piezas,
+      creditos,
+      hayCreditos: creditos.length > 0
+    };
+  }
+}
+</script>
+</body>
+</html>

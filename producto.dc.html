@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Producto — Mario Sanchis Tormo</title>
+  <meta name="description" content="Proyectos de diseño de producto de Mario Sanchis Tormo: grifería, smartwatch, mobiliario, tuneladora, altavoz y packaging.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Noto+Serif+Display:ital,wght@1,400;1,500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #fefbea; }
+    a { color: #3e7cb1; }
+    a:hover { color: #1e1e1c; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</helmet>
+
+<dc-import name="NavHeader" active-page="producto" hint-size="100%,52px"></dc-import>
+
+<main style="background:#fefbea; color:#1e1e1c; padding-top:52px;">
+
+  <header style="display:grid; grid-template-columns:minmax(60px,90px) 1fr; gap:24px; padding:72px clamp(16px,4vw,48px) 48px; border-bottom:1px solid rgba(110,136,152,0.35);">
+    <div style="font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898; text-transform:uppercase; border-right:1px solid rgba(110,136,152,0.35); padding-right:16px; align-self:start;">Índice<br>01</div>
+    <div>
+      <h1 style="font-family:'Big Shoulders Display', sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(40px,7vw,88px); line-height:0.95; margin:0;">Producto</h1>
+      <p style="font-family:'Noto Serif Display', serif; font-style:italic; font-size:clamp(16px,2vw,20px); color:#3e7cb1; margin:12px 0 0;">Objeto físico, de concepto a producción</p>
+    </div>
+  </header>
+
+  <div style="overflow-x:auto;">
+    <div style="min-width:720px; display:flex; flex-direction:column;">
+      <div style="display:grid; grid-template-columns:48px minmax(200px,1fr) 70px minmax(160px,280px) 28px; gap:20px; padding:0 clamp(16px,4vw,48px) 12px; font-family:'Fira Code', monospace; font-size:11px; letter-spacing:0.06em; color:#6e8898; text-transform:uppercase;">
+        <span>N.º</span><span>Proyecto</span><span>Año</span><span>Tipo · rol · herramientas</span><span></span>
+      </div>
+
+      <sc-for list="{{ rows }}" as="p" hint-placeholder-count="6">
+        <a href="{{ p.href }}" target="{{ p.target }}" style="{{ p.rowStyle }}" onMouseEnter="{{ p.onEnter }}" onMouseLeave="{{ p.onLeave }}" onPointerEnter="{{ p.onEnter }}" onPointerLeave="{{ p.onLeave }}" onFocus="{{ p.onEnter }}" onBlur="{{ p.onLeave }}">
+          <span style="font-family:'Fira Code', monospace; font-size:13px; color:#6e8898;">{{ p.numero }}</span>
+          <span style="display:flex; flex-direction:column; gap:4px; min-width:0;">
+            <span style="font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:clamp(18px,2.4vw,26px); text-transform:uppercase;">{{ p.titulo }}</span>
+            <span style="font-family:'Fira Code', monospace; font-size:13px; color:#6e8898; line-height:1.5;">{{ p.queEs }}</span>
+          </span>
+          <span style="font-family:'Fira Code', monospace; font-size:13px; color:#6e8898; align-self:start;">{{ p.anio }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:12px; line-height:1.7; color:#6e8898; white-space:pre-line;">{{ p.meta }}</span>
+          <span style="font-family:'Fira Code', monospace; font-size:16px; color:#3e7cb1; align-self:start;">{{ p.flecha }}</span>
+
+          <span style="{{ p.previewStyle }}">
+            <sc-for list="{{ p.tiras }}" as="t" hint-placeholder-count="4">
+              <span style="{{ t.slotStyle }}">
+                <sc-if value="{{ t.src }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ t.src }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </sc-if>
+                <sc-if value="{{ t.sinFoto }}" hint-placeholder-val="{{ true }}">
+                  <image-slot id="{{ t.id }}" shape="rect" placeholder="{{ t.placeholder }}"></image-slot>
+                </sc-if>
+              </span>
+            </sc-for>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+  <div style="height:64px;"></div>
+
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,80px"></dc-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hoveredIndex: null, supportsHover: true };
+
+  componentDidMount() {
+    if (window.matchMedia) {
+      this.setState({ supportsHover: window.matchMedia('(hover: hover) and (pointer: fine)').matches });
+    }
+  }
+
+  rowStyle(active, hovered) {
+    return {
+      display: 'grid',
+      gridTemplateColumns: '48px minmax(200px,1fr) 70px minmax(160px,280px) 28px',
+      gap: '20px',
+      alignItems: 'center',
+      padding: '22px clamp(16px,4vw,48px)',
+      borderTop: '1px solid rgba(110,136,152,0.3)',
+      textDecoration: 'none',
+      color: active ? '#1e1e1c' : '#6e8898',
+      background: hovered && active ? 'rgba(62,124,177,0.08)' : 'transparent',
+      position: 'relative',
+      cursor: active ? 'pointer' : 'default',
+      transition: 'background 0.2s ease',
+      opacity: active ? 1 : 0.5
+    };
+  }
+
+  renderVals() {
+    const data = [
+      {
+        titulo: 'Tozzo',
+        queEs: 'Colección de grifería — desarrollo completo, de concepto a producción',
+        anio: '2024',
+        tipo: 'Producto',
+        rol: 'Diseño de la ducha y los accesorios',
+        fotosSrc: ['grifo-01', 'alcachofa-pared-01', 'monomando-01', 'toallero-manos-01', 'toallero-pared-01'].map((n) => 'media/tozzo-' + n + '.jpg'),
+        herramientas: 'SolidWorks, Blender, KeyShot',
+        slug: 'proyecto-tozzo.dc.html',
+        real: true,
+        imageId: 'tozzo',
+        fotos: 4
+      },
+      { titulo: 'SW Vision M', queEs: 'Smartwatch inspirado en el lenguaje formal del BMW Vision M Next', anio: '2025', tipo: 'Diseño de producto conceptual', rol: 'Diseño completo, renders y paneles', herramientas: 'SolidWorks, KeyShot, Vizcom', slug: 'proyecto-sw-vision-m.dc.html', fotosSrc: ['reloj-01', 'escena-01', 'tecnologia-01', 'coleccion-01', 'escena-03'].map((n) => 'media/sw-' + n + '.jpg'), real: true, imageId: 'swvisionm', fotos: 4 },
+      { titulo: 'ElPis', queEs: 'Mesa multifunción para pisos pequeños', anio: '2025', tipo: 'Diseño de producto conceptual', rol: 'Desarrollo completo del diseño conceptual', herramientas: 'SolidWorks, Vizcom', slug: 'proyecto-elpis.dc.html', fotosSrc: ['cafe-01', 'escritorio-01', 'cocina-01', 'cafe-02'].map((n) => 'media/elpis-' + n + '.jpg'), real: true, imageId: 'elpis', fotos: 4 },
+      { titulo: 'Talpa Tunneling UPV', queEs: 'Dirección del diseño estructural y gestión interdepartamental', anio: '2024–2026', tipo: 'Dirección de proyecto y diseño estructural', rol: 'COO y director de diseño estructural', herramientas: 'SolidWorks, KeyShot, Vizcom', slug: 'proyecto-talpa.dc.html', fotosSrc: ['maquina-perspectiva-01', 'corona-01', 'chasis-perspectiva-01', 'maquina-lateral-01', 'chasis-frontal-01'].map((n) => 'media/talpa-' + n + '.jpg'), real: true, imageId: 'talpa' },
+      { titulo: 'Altavoz inalámbrico', queEs: 'Diseño para impresión 3D', anio: '2024', tipo: 'Diseño de producto y fabricación por impresión 3D', rol: 'Ingeniero de diseño de producto', herramientas: 'SolidWorks, Bambu Studio', slug: 'proyecto-altavoz.dc.html', real: true, imageId: 'altavoz', fotosSrc: ['madera-01', 'gama-01', 'bn-01', 'transparente-01', 'explosionado-01'].map((n) => 'media/altavoz-' + n + '.jpg') },
+      { titulo: 'Radio Active', queEs: 'Packaging para piruletas deportivas', anio: '2025', tipo: 'Packaging y diseño gráfico', rol: 'Diseño de producto, gráfico y packaging', herramientas: 'Illustrator, Vizcom', slug: 'proyecto-radioactive.dc.html', real: true, imageId: 'radioactive', fotosSrc: ['media/radioactive-01.jpg', 'media/radioactive-02.jpg', 'https://i.ytimg.com/vi/BWmvFN37XNI/hqdefault.jpg'] }
+    ];
+
+    const THUMB = 118;
+    const rows = data.map((p, i) => {
+      const hovered = this.state.hoveredIndex === i && p.real;
+      const n = p.fotosSrc ? Math.min(5, p.fotosSrc.length) : 0;
+      const tiras = Array.from({ length: n }, (_, k) => ({
+        src: p.fotosSrc ? p.fotosSrc[k] : '',
+        sinFoto: !p.fotosSrc,
+        id: (p.imageId || 'p' + i) + '-' + (k + 1),
+        placeholder: p.titulo + ' — foto ' + (k + 1),
+        slotStyle: {
+          flex: '0 0 auto',
+          width: THUMB + 'px',
+          height: '100%',
+          display: 'block',
+          border: '1px solid rgba(110,136,152,0.4)',
+          background: '#fefbea'
+        }
+      }));
+      return {
+        tiras,
+        numero: String(i + 1).padStart(2, '0'),
+        titulo: p.titulo,
+        queEs: p.queEs,
+        anio: p.anio,
+        meta: [...new Set([p.tipo, p.rol, p.herramientas].filter((x) => x && x !== '—'))].join('\n') || '—',
+        flecha: p.real ? '→' : '',
+        href: p.real ? p.slug : undefined,
+        target: undefined,
+        imageId: p.imageId || 'placeholder-' + i,
+        imagePlaceholder: p.titulo + ' — foto',
+        rowStyle: this.rowStyle(p.real, hovered || this.state.supportsHover === false && p.real),
+        onEnter: p.real ? () => this.setState({ hoveredIndex: i }) : undefined,
+        onLeave: p.real ? () => this.setState({ hoveredIndex: null }) : undefined,
+        previewStyle: {
+          position: this.state.supportsHover ? 'absolute' : 'static',
+          top: this.state.supportsHover ? '50%' : 'auto',
+          right: this.state.supportsHover ? 'clamp(16px,4vw,48px)' : 'auto',
+          transform: this.state.supportsHover ? 'translateY(-50%)' : 'none',
+          width: this.state.supportsHover ? 'auto' : '100%',
+          maxWidth: this.state.supportsHover ? 'min(620px, 58%)' : '100%',
+          height: '150px',
+          gridColumn: this.state.supportsHover ? 'auto' : '1 / -1',
+          marginTop: this.state.supportsHover ? '0' : (p.real ? '12px' : '0'),
+          display: p.real && n ? 'flex' : 'none',
+          gap: '6px',
+          padding: '7px',
+          boxSizing: 'border-box',
+          overflowX: this.state.supportsHover ? 'hidden' : 'auto',
+          opacity: this.state.supportsHover && !hovered ? 0 : 1,
+          visibility: this.state.supportsHover && !hovered ? 'hidden' : 'visible',
+          pointerEvents: this.state.supportsHover && !hovered ? 'none' : 'auto',
+          transition: 'none',
+          border: '1px solid #3e7cb1',
+          zIndex: 5,
+          background: '#fefbea'
+        }
+      };
+    });
+
+    return { rows };
+  }
+}
+</script>
+</body>
+</html>
